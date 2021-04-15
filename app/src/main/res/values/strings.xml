@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Prattle</string>
-    <string name="text_label_1">Calendar</string>
-    <string name="text_label_2">Plan Hangout</string>
-    <string name="text_label_3">Contacts</string>
+    <string name="nav_label_1">Calendar</string>
+    <string name="nav_label_2">Plan Hangout</string>
+    <string name="nav_label_3">Contacts</string>
+    <string name="tab_label_1">Browse Hangouts</string>
+    <string name="tab_label_2">My Hangouts</string>
     <string name="title_activity_update_calendar">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

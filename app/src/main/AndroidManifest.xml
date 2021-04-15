@@ -21,6 +21,7 @@
             android:value="@string/YOUR_API_KEY">
         </meta-data>
 
+        <activity android:name=".UpdateContacts"/>
         <activity
             android:name=".UpdateCalendar"
             android:configChanges="orientation|keyboardHidden|screenSize"
