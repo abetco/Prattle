@@ -2,6 +2,7 @@ package edu.illinois.cs465.prattle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,20 +23,28 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
-//        TabLayout tabLayout = findViewById(R.id.tab_layout);
-//        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                // Handle tab select
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//                // Handle tab reselect
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                // Handle tab unselect
-//            }
-//        });
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("Browse Hangouts"));
+        tabLayout.addTab(tabLayout.newTab().setText("My Hangouts"));
+        tabLayout.setTabGravity((TabLayout.GRAVITY_FILL));
+        final ViewPager viewPager = findViewById(R.id.pager);
+        TabsAdapter tabsAdapter = new TabsAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(tabsAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
