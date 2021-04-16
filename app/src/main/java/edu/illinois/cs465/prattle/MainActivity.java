@@ -3,26 +3,37 @@ package edu.illinois.cs465.prattle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+import edu.illinois.cs465.prattle.data.TabsAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    // My Hangouts Tab List
+    ListView listView;
+    List list = new ArrayList();
+    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Bottom Navigation Creation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
+        // Hangouts tab creation
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Browse Hangouts"));
         tabLayout.addTab(tabLayout.newTab().setText("My Hangouts"));
@@ -45,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        // My Hangouts List Creation
+        listView = findViewById(R.id.my_hangouts_list);
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+//        adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, list);
+//        listView.setAdapter(adapter);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
