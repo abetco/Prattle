@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -75,7 +77,14 @@ import android.widget.Button;
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        btn.setBackgroundColor(Color.BLUE);
+                        int color = Color.LTGRAY;
+                        Drawable background = btn.getBackground();
+                        if (background instanceof ColorDrawable)
+                            color = ((ColorDrawable) background).getColor();
+                        if (color == Color.LTGRAY)
+                            btn.setBackgroundColor(Color.BLUE);
+                        else if (color == Color.BLUE)
+                            btn.setBackgroundColor(Color.LTGRAY);
                     }
                 });
 
