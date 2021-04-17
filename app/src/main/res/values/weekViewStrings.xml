@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Mon">Mon</string>
+    <string name="Tue">Tue</string>
+    <string name="Wed">Wed</string>
+    <string name="Thu">Thu</string>
+    <string name="Fri">Fri</string>
+    <string name="Sat">Sat</string>
+    <string name="Sun">Sun</string>
+    <string name="Time">Time</string>
+
+    <string name="oneAm">1:00am</string>
+    <string name="twoAm">2:00am</string>
+    <string name="threeAm">3:00am</string>
+    <string name="fourAm">4:00am</string>
+    <string name="fiveAm">5:00am</string>
+    <string name="sixAm">6:00am</string>
+    <string name="sevenAm">7:00am</string>
+    <string name="eightAm">8:00am</string>
+    <string name="nineAm">9:00am</string>
+    <string name="tenAm">10:00am</string>
+    <string name="elevenAm">11:00am</string>
+    <string name="twelveAm">12:00am</string>
+    <string name="onePm">1:00pm</string>
+    <string name="twoPm">2:00pm</string>
+    <string name="threePm">3:00pm</string>
+    <string name="fourPm">4:00pm</string>
+    <string name="fivePm">5:00pm</string>
+    <string name="sixPm">6:00pm</string>
+    <string name="sevenPm">7:00pm</string>
+    <string name="eightPm">8:00pm</string>
+    <string name="ninePm">9:00pm</string>
+    <string name="tenPm">10:00pm</string>
+    <string name="elevenPm">11:00pm</string>
+    <string name="twelvePm">12:00pm</string>
+
+</resources>

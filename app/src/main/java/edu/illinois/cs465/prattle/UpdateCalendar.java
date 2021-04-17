@@ -5,21 +5,84 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.GridView;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.content.Context;
+import android.app.Activity;
+import android.graphics.Color;
+import android.widget.Button;
 
+    public class UpdateCalendar extends Activity {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_update_calendar);
 
-public class UpdateCalendar extends AppCompatActivity {
+            GridView gridview = (GridView) findViewById(R.id.week_holder);
+            gridview.setAdapter(new ButtonAdapter(this));
+        }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_calendar);
+        public class ButtonAdapter extends BaseAdapter {
+            private Context mContext;
+            private int btn_id;
+            private int total_btns = 168;
+
+            public ButtonAdapter(Context context) {
+                this.mContext = context;
+            }
+
+            @Override
+            public int getCount() {
+                return total_btns;
+            }
+
+            @Override
+            public Object getItem(int i) {
+                return null;
+            }
+
+            @Override
+            public long getItemId(int i) {
+                return 0;
+            }
+
+            @Override
+            public View getView(final int i, View view, ViewGroup viewGroup) {
+                Button btn;
+
+                if (view == null) {
+                    btn = new Button(mContext);
+                    btn.setTag("a" + (++btn_id));//Button tagging system all buttons currently are taged a0-a167
+                } else {
+                    btn = (Button) view;
+                }
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        btn.setBackgroundColor(Color.BLUE);
+                    }
+                });
+
+                return btn;
+            }
+        }
     }
-}
 
 
 /*
