@@ -1,8 +1,10 @@
-package edu.illinois.cs465.prattle;
+package edu.illinois.cs465.prattle.data;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import edu.illinois.cs465.prattle.BrowseHangoutsFragment;
+import edu.illinois.cs465.prattle.MyHangoutsFragment;
 
 public class TabsAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
