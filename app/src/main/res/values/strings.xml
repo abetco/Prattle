@@ -18,6 +18,9 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="YOUR_API_KEY">"AIzaSyCtYNWLAVqJoXlM-qsbSTdkoLKE-LA1EdY"</string>
+    <string name="contact_name_header">Name</string>
+    <string name="contact_status_header">How often would you like to contact them?</string>
+    <string name="done_editing_contacts">Done</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
