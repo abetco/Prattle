@@ -29,7 +29,9 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.widget.Button;
 
-    public class UpdateCalendar extends Activity {
+import com.google.android.gms.common.internal.FallbackServiceBroker;
+
+public class UpdateCalendar extends Activity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -91,6 +93,28 @@ import android.widget.Button;
                 return btn;
             }
         }
+    }
+
+    class PrattleCalendar{
+        String uid = new String();
+        String pwd = new String();
+        boolean[][][] hourly_availabilities = new boolean[12][31][24];
+
+        public PrattleCalendar(String userID, String password){
+                uid = userID;
+                pwd = password;
+        }
+        protected void wipe_availabilities(boolean[][][] h_a){
+            /* naive implementation*/
+            for (int i = 0; i < h_a.length; i++) {
+                for (int j = 0; j < h_a[i].length; j++) {
+                    for (int k = 0; k < h_a[i][j].length; k++) {
+                        h_a[i][j][k] = false;
+                    }
+                }
+            }
+        }
+
     }
 
 

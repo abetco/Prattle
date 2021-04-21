@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(calIntent);
                             break;
                         case R.id.nav_plan_hangout:
+                            Intent planIntent = new Intent(MainActivity.this, PlanHangout.class);
+                            startActivity(planIntent);
                             break;
                         case R.id.nav_contacts:
                             Intent conIntent = new Intent(MainActivity.this, UpdateContacts.class);
