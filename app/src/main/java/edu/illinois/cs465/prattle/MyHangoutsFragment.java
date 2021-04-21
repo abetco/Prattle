@@ -30,7 +30,7 @@ public class MyHangoutsFragment extends Fragment {
         ArrayList<HangoutModel> dataModels;
         dataModels = new ArrayList<>();
         dataModels.add(new HangoutModel("Basketball", "5/31", "Chicago",
-                "", new String[0], 0, 0));
+                "Come play basketball with me!", new String[0], 0, 0));
         dataModels.add(new HangoutModel("Soccer", "4/30", "Virtual",
                 "", new String[0], 0, 0));
         dataModels.add(new HangoutModel("Music", "3/31", "Virtual",

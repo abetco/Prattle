@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.illinois.cs465.prattle">
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,24 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Prattle">
+        <activity android:name=".HangoutPage"></activity>
 
-        <meta-data
-            android:name="com.google.android.gms.vision"
-            android:value="@integer/google_play_services_version">
-        </meta-data>
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/YOUR_API_KEY">
-        </meta-data>
-
-
-        <activity android:name=".UpdateContacts"/>
-
+        <activity android:name=".UpdateContacts" />
         <activity
             android:name=".PlanHangout"
             android:label="@string/title_activity_plan_hangout"
-            android:theme="@style/Theme.Prattle.NoActionBar"></activity>
+            android:theme="@style/Theme.Prattle.NoActionBar" />
 
         <activity
             android:name=".UpdateCalendar"
@@ -42,6 +29,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.gms.vision"
+            android:value="@integer/google_play_services_version"></meta-data>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/YOUR_API_KEY"></meta-data>
     </application>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

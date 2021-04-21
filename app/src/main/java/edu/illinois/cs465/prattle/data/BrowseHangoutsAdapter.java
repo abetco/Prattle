@@ -17,26 +17,26 @@ public class BrowseHangoutsAdapter extends RecyclerView.Adapter<BrowseHangoutsAd
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView titleView;
-        private final TextView datetxtView;
-        private final TextView locationtxtView;
+        private final TextView dateView;
+        private final TextView locationView;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
 
             titleView = view.findViewById(R.id.browse_hangouts_title);
-            datetxtView = view.findViewById(R.id.browse_hangouts_date);
-            locationtxtView = view.findViewById(R.id.browse_hangouts_location);
+            dateView = view.findViewById(R.id.browse_hangouts_date);
+            locationView = view.findViewById(R.id.browse_hangouts_location);
         }
 
         public TextView getTitleView() {
             return titleView;
         }
-        public TextView getDatetxtView() {
-            return datetxtView;
+        public TextView getDateView() {
+            return dateView;
         }
-        public TextView getLocationtxtView() {
-            return locationtxtView;
+        public TextView getLocationView() {
+            return locationView;
         }
 
     }
@@ -56,8 +56,8 @@ public class BrowseHangoutsAdapter extends RecyclerView.Adapter<BrowseHangoutsAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.getTitleView().setText(dataSet.get(position).getTitle());
-        holder.getDatetxtView().setText(dataSet.get(position).getDate());
-        holder.getLocationtxtView().setText(dataSet.get(position).getLocation());
+        holder.getDateView().setText(dataSet.get(position).getDate());
+        holder.getLocationView().setText(dataSet.get(position).getLocation());
     }
 
     @Override
