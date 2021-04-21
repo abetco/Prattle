@@ -8,7 +8,7 @@
     android:layout_marginBottom="5dp">
 
     <TextView
-        android:id="@+id/my_hangouts_title"
+        android:id="@+id/browse_hangouts_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,18 +16,18 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/my_hangouts_date"
+        android:id="@+id/browse_hangouts_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/my_hangouts_title"
+        android:layout_alignTop="@id/browse_hangouts_title"
         android:layout_marginTop="20dp"
         android:text="date"/>
 
     <TextView
-        android:id="@+id/my_hangouts_location"
+        android:id="@+id/browse_hangouts_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/my_hangouts_title"
+        android:layout_alignTop="@id/browse_hangouts_title"
         android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"
         android:text="location"/>
@@ -35,17 +35,17 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/my_hangouts_date"
+        android:layout_alignTop="@id/browse_hangouts_date"
         android:layout_marginTop="30dp">
 
         <RelativeLayout
-            android:id="@+id/my_hangouts_profiles_1"
+            android:id="@+id/browse_hangouts_profiles_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp">
 
             <ImageView
-                android:id="@+id/my_hangouts_icon_1"
+                android:id="@+id/browse_hangouts_icon_1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:scaleType="fitXY"
@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/my_hangouts_icon_1"
+                android:layout_alignTop="@id/browse_hangouts_icon_1"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                 android:text="Amy"/>
@@ -63,13 +63,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/my_hangouts_profiles_2"
+            android:id="@+id/browse_hangouts_profiles_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp">
 
             <ImageView
-                android:id="@+id/my_hangouts_icon_2"
+                android:id="@+id/browse_hangouts_icon_2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:scaleType="fitXY"
@@ -79,7 +79,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/my_hangouts_icon_2"
+                android:layout_alignTop="@id/browse_hangouts_icon_2"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                 android:text="You"/>
@@ -87,13 +87,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/my_hangouts_profiles_3"
+            android:id="@+id/browse_hangouts_profiles_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp">
 
             <ImageView
-                android:id="@+id/my_hangouts_icon_3"
+                android:id="@+id/browse_hangouts_icon_3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:scaleType="fitXY"
@@ -102,7 +102,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/my_hangouts_icon_3"
+                android:layout_alignTop="@id/browse_hangouts_icon_3"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:text="\?"/>
@@ -110,12 +110,12 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/my_hangouts_profiles_4"
+            android:id="@+id/browse_hangouts_profiles_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/my_hangouts_icon_4"
+                android:id="@+id/browse_hangouts_icon_4"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:scaleType="fitXY"
@@ -124,7 +124,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/my_hangouts_icon_4"
+                android:layout_alignTop="@id/browse_hangouts_icon_4"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                 android:text="\?"/>
@@ -136,19 +136,19 @@
 
 
     <TextView
-        android:id="@+id/my_hangouts_participants"
+        android:id="@+id/browse_hangouts_participants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/my_hangouts_location"
+        android:layout_alignTop="@id/browse_hangouts_location"
         android:layout_marginTop="35dp"
         android:layout_alignParentRight="true"
         android:text="2/4"/>
 
     <TextView
-        android:id="@+id/my_hangouts_min_participants"
+        android:id="@+id/browse_hangouts_min_participants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/my_hangouts_participants"
+        android:layout_alignTop="@id/browse_hangouts_participants"
         android:layout_marginTop="25dp"
         android:layout_alignParentRight="true"
         android:text="minimum: 2"
