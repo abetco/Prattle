@@ -40,6 +40,7 @@
         android:layout_width="357dp"
         android:layout_height="633dp"
         android:layout_gravity="bottom|center"
+        android:backgroundTint="@color/teal_200"
         android:gravity="right|top"
         android:orientation="vertical">
 
@@ -121,8 +122,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
-            android:background="@color/teal_200"
-            android:backgroundTint="@color/teal_200"
+            android:background="@color/black"
+            android:backgroundTint="#704AE6D8"
             android:text="Add Invitees"
             android:textColor="#000000" />
 
@@ -138,7 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:saveEnabled="true"
-            android:text="Send notifications via SMS" />
+            android:text="Send invitations via SMS" />
 
     </LinearLayout>
 
