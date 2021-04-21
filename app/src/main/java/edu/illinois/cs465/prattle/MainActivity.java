@@ -8,21 +8,11 @@ import edu.illinois.cs465.prattle.data.TabsAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-
-    // My Hangouts Tab List
-    ListView listView;
-    List list = new ArrayList();
-    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        // My Hangouts List Creation
-        listView = findViewById(R.id.my_hangouts_list);
-        for (int i = 0; i < 10; i++) {
-            list.add(i);
-        }
-//        adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, list);
-//        listView.setAdapter(adapter);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -76,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(calIntent);
                             break;
                         case R.id.nav_plan_hangout:
+                            Intent planIntent = new Intent(MainActivity.this, PlanHangout.class);
+                            startActivity(planIntent);
                             break;
                         case R.id.nav_contacts:
                             Intent conIntent = new Intent(MainActivity.this, UpdateContacts.class);
