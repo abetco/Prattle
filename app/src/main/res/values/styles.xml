@@ -8,4 +8,12 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+    <style name="DatePickerStyle">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TimePickerStyle">
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

@@ -2,9 +2,9 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="381dp"
     android:layout_height="match_parent"
-    android:layout_gravity="bottom"
+    android:layout_gravity="center"
     tools:context=".PlanHangout">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -25,7 +25,9 @@
 
     <include
         layout="@layout/content_plan_hangout"
-        android:layout_height="656dp" />
+        android:layout_width="381dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -52,42 +54,41 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:saveEnabled="true"
-            android:text="Hangout Name" />
+            android:hint="Hangout Name" />
 
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="168dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date"
-            android:saveEnabled="true"
-            android:text="Date" />
 
-        <EditText
-            android:id="@+id/editTextTime3"
-            android:layout_width="168dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="time"
-            android:saveEnabled="true"
-            android:text="Time" />
+        <DatePicker
+            android:theme="@style/DatePickerStyle"
+            android:id="@+id/date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_weight="4"
+            android:calendarViewShown="true"
+            android:spinnersShown="false" />
+
+        <TimePicker
+            android:theme="@style/TimePickerStyle"
+            android:id="@+id/time_picker"
+            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
 
         <EditText
             android:id="@+id/editTextNumber2"
-            android:layout_width="168dp"
+            android:layout_width="236dp"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Min. participants"
             android:inputType="number"
-            android:saveEnabled="true"
-            android:text="Min." />
+            android:saveEnabled="true" />
 
         <EditText
             android:id="@+id/editTextNumber3"
-            android:layout_width="168dp"
+            android:layout_width="235dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number"
-            android:text="Max." />
+            android:hint="Max. participants (optional)"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/editTextTextMultiLine"
@@ -97,25 +98,25 @@
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:saveEnabled="true"
-            android:text="Description (optional)" />
+            android:hint="Description (optional)" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName5"
+        <AutoCompleteTextView
+            android:id="@+id/invitee1"
+            android:layout_width="357dp"
+            android:layout_height="wrap_content"
+            android:hint="Invitee #1 (optional)" />
+
+        <AutoCompleteTextView
+            android:id="@+id/invitee2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:saveEnabled="true"
-            android:text="Name" />
+            android:hint="Invitee #2 (optional)" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName6"
+        <AutoCompleteTextView
+            android:id="@+id/invitee3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:saveEnabled="true"
-            android:text="Name" />
+            android:hint="Invitee #3 (optional)" />
 
         <Button
             android:id="@+id/button"
@@ -124,7 +125,7 @@
             android:layout_gravity="center|left"
             android:background="@color/black"
             android:backgroundTint="#704AE6D8"
-            android:text="Add Invitees"
+            android:text="Add More Invitees"
             android:textColor="#000000" />
 
         <CheckBox
