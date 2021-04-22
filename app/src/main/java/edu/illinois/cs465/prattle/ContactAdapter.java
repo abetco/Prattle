@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class ContactAdapter extends ArrayAdapter {
     private class ViewHolder {
         TextView name;
         Button status;
+        ImageView photo;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -54,8 +56,9 @@ public class ContactAdapter extends ArrayAdapter {
             convertView = vi.inflate(R.layout.contact_info, null);
 
             holder = new ViewHolder();
-            holder.name = (TextView) convertView.findViewById(R.id.contactName);
-            holder.status = (Button) convertView.findViewById(R.id.contactStatus);
+            holder.name = convertView.findViewById(R.id.contactName);
+            holder.status = convertView.findViewById(R.id.contactStatus);
+            holder.photo = convertView.findViewById(R.id.contactPhoto);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -63,6 +66,7 @@ public class ContactAdapter extends ArrayAdapter {
 
         ContactInfo contactInfo = (ContactInfo) contactInfoList.get(position);
         holder.name.setText(contactInfo.getName());
+        holder.photo.setImageBitmap(contactInfo.getPhoto());
         UpdateButton(holder, contactInfo.getStatus());
 
         ViewHolder finalHolder = holder;
