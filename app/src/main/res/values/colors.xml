@@ -14,6 +14,7 @@
     <color name="black_overlay">#66000000</color>
     <color name="transparent_white">#F98F45</color>
     <color name="grey">#E1E1E1</color>
+    <color name="background">#16594A</color>
     <color name="primary_color">#12908E</color>
     <color name="secondary_color">#704AE6D8</color>
     <color name="accent_color">#F98F45</color>
