@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/browse_hangouts_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -45,19 +45,28 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp">
 
-            <ImageView
-                android:id="@+id/browse_hangouts_icon_1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitXY"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_baseline_account_circle_faded_24" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/browse_hangouts_card_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="25dp"
+                app:cardPreventCornerOverlap="false">
+
+                <ImageView
+                    android:id="@+id/browse_hangouts_icon_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_baseline_account_circle_faded_24" />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/browse_hangouts_name_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/browse_hangouts_icon_1"
+                android:layout_alignTop="@id/browse_hangouts_card_1"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                 android:text="\?"/>
@@ -70,19 +79,28 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp">
 
-            <ImageView
-                android:id="@+id/browse_hangouts_icon_2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitXY"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_baseline_account_circle_faded_24" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/browse_hangouts_card_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="25dp"
+                app:cardPreventCornerOverlap="false">
+
+                <ImageView
+                    android:id="@+id/browse_hangouts_icon_2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_baseline_account_circle_faded_24" />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/browse_hangouts_name_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/browse_hangouts_icon_2"
+                android:layout_alignTop="@id/browse_hangouts_card_2"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                 android:text="\?"/>
@@ -95,18 +113,28 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp">
 
-            <ImageView
-                android:id="@+id/browse_hangouts_icon_3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_baseline_account_circle_faded_24" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/browse_hangouts_card_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="25dp"
+                app:cardPreventCornerOverlap="false">
+
+                <ImageView
+                    android:id="@+id/browse_hangouts_icon_3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_baseline_account_circle_faded_24" />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/browse_hangouts_name_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/browse_hangouts_icon_3"
+                android:layout_alignTop="@id/browse_hangouts_card_3"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:text="\?"/>
@@ -118,18 +146,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/browse_hangouts_icon_4"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_baseline_account_circle_faded_24" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/browse_hangouts_card_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="25dp"
+                app:cardPreventCornerOverlap="false">
+
+                <ImageView
+                    android:id="@+id/browse_hangouts_icon_4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_baseline_account_circle_faded_24" />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/browse_hangouts_name_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/browse_hangouts_icon_4"
+                android:layout_alignTop="@id/browse_hangouts_card_4"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                 android:text="\?"/>

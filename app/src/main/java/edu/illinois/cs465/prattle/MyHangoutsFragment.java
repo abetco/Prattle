@@ -49,8 +49,11 @@ public class MyHangoutsFragment extends Fragment {
     }
 
     public void updateContent() {
-        dataModels.add(new HangoutModel("New thing", "2/30", "europe",
-                "", new String[0], 0, 0));
+        if (dataModels.get(dataModels.size() - 1).getTitle() == "Six Flags Hangout!") {
+            return;
+        }
+        dataModels.add(new HangoutModel("Six Flags Hangout!", "Sunday, 4/25, 12:00 PM", "Gurnee, IL",
+                "I want to have fun", new String[]{"You"}, 1, 8));
         MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_hangouts_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
