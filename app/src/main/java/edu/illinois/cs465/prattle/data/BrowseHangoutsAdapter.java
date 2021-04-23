@@ -1,14 +1,19 @@
 package edu.illinois.cs465.prattle.data;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import edu.illinois.cs465.prattle.HangoutPage;
 import edu.illinois.cs465.prattle.R;
 
 public class BrowseHangoutsAdapter extends RecyclerView.Adapter<BrowseHangoutsAdapter.ViewHolder> {
@@ -19,6 +24,11 @@ public class BrowseHangoutsAdapter extends RecyclerView.Adapter<BrowseHangoutsAd
         private final TextView titleView;
         private final TextView dateView;
         private final TextView locationView;
+        private final TextView[] namesView;
+        private final ImageView[] profilesView;
+        private final TextView participantsView;
+        private final TextView minParticipantsView;
+        private final RelativeLayout itemView;
 
         public ViewHolder(View view) {
             super(view);
@@ -27,6 +37,17 @@ public class BrowseHangoutsAdapter extends RecyclerView.Adapter<BrowseHangoutsAd
             titleView = view.findViewById(R.id.browse_hangouts_title);
             dateView = view.findViewById(R.id.browse_hangouts_date);
             locationView = view.findViewById(R.id.browse_hangouts_location);
+            namesView = new TextView[]{view.findViewById(R.id.browse_hangouts_name_1),
+                    view.findViewById(R.id.browse_hangouts_name_2),
+                    view.findViewById(R.id.browse_hangouts_name_3),
+                    view.findViewById(R.id.browse_hangouts_name_4)};
+            profilesView = new ImageView[]{view.findViewById(R.id.browse_hangouts_icon_1),
+                    view.findViewById(R.id.browse_hangouts_icon_2),
+                    view.findViewById(R.id.browse_hangouts_icon_3),
+                    view.findViewById(R.id.browse_hangouts_icon_4)};
+            participantsView = view.findViewById(R.id.browse_hangouts_participants);
+            minParticipantsView = view.findViewById(R.id.browse_hangouts_min_participants);
+            itemView = view.findViewById(R.id.browse_hangouts_layout);
         }
 
         public TextView getTitleView() {
@@ -37,6 +58,21 @@ public class BrowseHangoutsAdapter extends RecyclerView.Adapter<BrowseHangoutsAd
         }
         public TextView getLocationView() {
             return locationView;
+        }
+        public RelativeLayout getItemView() {
+            return itemView;
+        }
+        public TextView[] getNamesView() {
+            return namesView;
+        }
+        public TextView getParticipantsView() {
+            return participantsView;
+        }
+        public TextView getMinParticipantsView() {
+            return minParticipantsView;
+        }
+        public ImageView[] getProfilesView() {
+            return profilesView;
         }
 
     }
@@ -58,6 +94,33 @@ public class BrowseHangoutsAdapter extends RecyclerView.Adapter<BrowseHangoutsAd
         holder.getTitleView().setText(dataSet.get(position).getTitle());
         holder.getDateView().setText(dataSet.get(position).getDate());
         holder.getLocationView().setText(dataSet.get(position).getLocation());
+        String names[] = dataSet.get(position).getParticipants();
+        TextView namesViews[] = holder.getNamesView();
+        ImageView profilesViews[] = holder.getProfilesView();
+        for (int i = 0; i < names.length; i++) {
+            namesViews[i].setText(names[i]);
+            profilesViews[i].setImageResource(R.drawable.ic_baseline_account_circle_24);
+        }
+        String participantsText = "Attendees: " +
+                String.valueOf(dataSet.get(position).getParticipants().length) + "/" +
+                String.valueOf(dataSet.get(position).getMaxParticipants());
+        holder.getParticipantsView().setText(participantsText);
+        String minParticipantsText = "minimum: " + String.valueOf(dataSet.get(position).getMinParticipants());
+        holder.getMinParticipantsView().setText(minParticipantsText);
+        holder.getItemView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), HangoutPage.class);
+                Bundle b = new Bundle();
+                b.putString("title", dataSet.get(position).getTitle());
+                b.putString("date", dataSet.get(position).getDate());
+                b.putString("location", dataSet.get(position).getLocation());
+                b.putString("description", dataSet.get(position).getDescription());
+                intent.putExtras(b);
+                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

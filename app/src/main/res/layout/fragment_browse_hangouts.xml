@@ -15,7 +15,7 @@
             android:layout_toLeftOf="@id/hangouts_switch"
             android:layout_marginTop="10dp"
             android:layout_marginRight="4dp"
-            android:text="match schedule"/>
+            android:text="Match Schedule"/>
 
         <Switch
             android:id="@+id/hangouts_switch"

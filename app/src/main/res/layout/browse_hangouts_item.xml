@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/browse_hangouts_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/hangouts_border"
@@ -50,15 +51,16 @@
                 android:layout_height="40dp"
                 android:scaleType="fitXY"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_baseline_account_circle_24" />
+                android:src="@drawable/ic_baseline_account_circle_faded_24" />
 
             <TextView
+                android:id="@+id/browse_hangouts_name_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/browse_hangouts_icon_1"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
-                android:text="Amy"/>
+                android:text="\?"/>
 
         </RelativeLayout>
 
@@ -74,15 +76,16 @@
                 android:layout_height="40dp"
                 android:scaleType="fitXY"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_baseline_account_circle_24" />
+                android:src="@drawable/ic_baseline_account_circle_faded_24" />
 
             <TextView
+                android:id="@+id/browse_hangouts_name_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/browse_hangouts_icon_2"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
-                android:text="You"/>
+                android:text="\?"/>
 
         </RelativeLayout>
 
@@ -100,6 +103,7 @@
                 android:src="@drawable/ic_baseline_account_circle_faded_24" />
 
             <TextView
+                android:id="@+id/browse_hangouts_name_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/browse_hangouts_icon_3"
@@ -122,6 +126,7 @@
                 android:src="@drawable/ic_baseline_account_circle_faded_24" />
 
             <TextView
+                android:id="@+id/browse_hangouts_name_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/browse_hangouts_icon_4"
@@ -142,7 +147,7 @@
         android:layout_alignTop="@id/browse_hangouts_location"
         android:layout_marginTop="35dp"
         android:layout_alignParentRight="true"
-        android:text="2/4"/>
+        android:text=""/>
 
     <TextView
         android:id="@+id/browse_hangouts_min_participants"
@@ -151,7 +156,7 @@
         android:layout_alignTop="@id/browse_hangouts_participants"
         android:layout_marginTop="25dp"
         android:layout_alignParentRight="true"
-        android:text="minimum: 2"
+        android:text=""
         android:textSize="10dp"/>
 
 </RelativeLayout>

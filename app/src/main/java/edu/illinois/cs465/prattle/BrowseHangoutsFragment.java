@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import java.util.ArrayList;
 
@@ -29,16 +31,27 @@ public class BrowseHangoutsFragment extends Fragment {
 
         ArrayList<HangoutModel> dataModels;
         dataModels = new ArrayList<>();
-        dataModels.add(new HangoutModel("Basketball at ARC", "Monday, 5/31, 6:30 PM", "Champaign",
+        dataModels.add(new HangoutModel("Basketball at ARC", "Monday, 5/31, 6:30 PM", "Champaign, IL",
                 "Come play basketball!", new String[]{"Amy", "Bob", "Joe"}, 2, 10));
         dataModels.add(new HangoutModel("Movie night", "Friday, 4/30, 8:30 PM", "Virtual",
                 "Watching movies! We'll vote on one before we start.", new String[]{"Billy", "Joe"}, 1, 10));
         dataModels.add(new HangoutModel("Music Jam Session", "Tuesday, 4/27, 3:00 PM", "Virtual",
                 "Moosic", new String[]{"Amy"}, 2, 4));
-//        dataModels.add(new HangoutModel("Food", "5/18", "Urbana",
-//                "", new String[0], 0, 0));
-//        dataModels.add(new HangoutModel("Netflix", "5/23", "Champaign",
-//                "", new String[0], 0, 0));
+        Switch matchSwitch = v.findViewById(R.id.hangouts_switch);
+        matchSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    dataModels.remove(dataModels.size() - 1);
+                }
+                else {
+                    dataModels.add(new HangoutModel("Music Jam Session", "Tuesday, 4/27, 3:00 PM", "Virtual",
+                            "Moosic", new String[]{"Amy"}, 2, 4));
+                }
+                BrowseHangoutsAdapter adapter = new BrowseHangoutsAdapter(dataModels);
+                recyclerView.setAdapter(adapter);
+            }
+        });
 
         BrowseHangoutsAdapter adapter = new BrowseHangoutsAdapter(dataModels);
         recyclerView.setAdapter(adapter);
