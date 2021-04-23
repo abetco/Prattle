@@ -3,13 +3,18 @@ package edu.illinois.cs465.prattle;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -23,10 +28,22 @@ public class UpdateCalendar extends AppCompatActivity {
             GridView gridview = (GridView) findViewById(R.id.week_holder);
             gridview.setAdapter(new ButtonAdapter(this));
             getSupportActionBar().setTitle("Set Free Time");
-            spinner1 = (Spinner) findViewById(R.id.update_cal_spinner);
+//            spinner1 = (Spinner) findViewById(R.id.update_cal_spinner);
+//            addListenerOnSpinnerItemSelection();
+        }
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.cal_toolbar, menu);
+            MenuItem item = menu.findItem(R.id.item1);
+            spinner1 = (Spinner) item.getActionView();
+
+            SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.calendar2_tasks_array, android.R.layout.simple_spinner_dropdown_item);
+            spinner1.setAdapter(mSpinnerAdapter);
+        //        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
+        //        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, R.layout.spinner_item,items);
             addListenerOnSpinnerItemSelection();
-
-
+            return true;
         }
 
         public void addListenerOnSpinnerItemSelection() {

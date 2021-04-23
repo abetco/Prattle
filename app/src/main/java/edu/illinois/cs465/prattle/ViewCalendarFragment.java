@@ -39,7 +39,7 @@ public class ViewCalendarFragment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_calendar);
         Intent recIntent = getIntent();
-        getSupportActionBar().setTitle("Set Free Time");
+        getSupportActionBar().setTitle("View Calendar");
 
         if(recIntent.hasExtra("isEvent")) {
             Bundle extras = recIntent.getExtras();
@@ -98,10 +98,10 @@ public class ViewCalendarFragment extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.item1);
         spinner1 = (Spinner) item.getActionView();
 
-//        SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(ViewCalendarFragment.this.getActionBar()
-//                .getThemedContext(), R.array.calendar_tasks_array, android.R.layout.simple_spinner_dropdown_item);
-//        spinner1.setAdapter(mSpinnerAdapter);
-        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
+        SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.calendar_tasks_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(mSpinnerAdapter);
+//        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
+//        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, R.layout.spinner_item,items);
         addListenerOnSpinnerItemSelection();
         return true;
     }

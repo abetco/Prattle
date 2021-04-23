@@ -19,7 +19,8 @@
             android:theme="@style/Theme.Prattle.NoActionBar" />
         <activity
             android:name=".ViewCalendarFragment"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".UpdateCalendar"
             android:configChanges="orientation|keyboardHidden|screenSize"

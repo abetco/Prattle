@@ -11,24 +11,23 @@
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
-        <Spinner
-            android:id="@+id/update_cal_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/calendar2_tasks_array"
-            android:prompt="@string/hello_first_fragment" />
-    </RelativeLayout>
+<!--        <Spinner-->
+<!--            android:id="@+id/update_cal_spinner"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:entries="@array/calendar2_tasks_array"-->
+<!--            android:prompt="@string/hello_first_fragment" />-->
+<!--    </RelativeLayout>-->
 
     <LinearLayout
         android:id="@+id/lin_layoutVer"
         android:layout_width="60dp"
         android:layout_height="650dp"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lin_layoutHor"
@@ -183,7 +182,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="30dp"
         tools:ignore="MissingConstraints">
 
         <TextView
