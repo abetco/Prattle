@@ -64,16 +64,16 @@
             android:id="@+id/date_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:calendarViewShown="true"
-            android:spinnersShown="false"
+            android:calendarViewShown="false"
+            android:spinnersShown="true"
             android:theme="@style/DatePickerStyle" />
 
         <TimePicker
             android:id="@+id/time_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/TimePickerStyle" />
-
+            android:theme="@style/TimePickerStyle"
+            android:timePickerMode="spinner" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
