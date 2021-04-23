@@ -5,13 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
+
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
@@ -19,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class ViewCalendarFragment extends Activity {
+public class ViewCalendarFragment extends AppCompatActivity {
     private Spinner spinner1;
     private long dateTime;
     private String eventName;
@@ -32,6 +39,7 @@ public class ViewCalendarFragment extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_calendar);
         Intent recIntent = getIntent();
+        getSupportActionBar().setTitle("Set Free Time");
 
         if(recIntent.hasExtra("isEvent")) {
             Bundle extras = recIntent.getExtras();
@@ -44,8 +52,8 @@ public class ViewCalendarFragment extends Activity {
             isEvent = false;
         }
 
-        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
-        addListenerOnSpinnerItemSelection();
+//        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
+//        addListenerOnSpinnerItemSelection();
 
 //        final ActionBar actionBar = getSupportActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(false);
@@ -83,6 +91,21 @@ public class ViewCalendarFragment extends Activity {
             }
         }));
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cal_toolbar, menu);
+        MenuItem item = menu.findItem(R.id.item1);
+        spinner1 = (Spinner) item.getActionView();
+
+//        SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(ViewCalendarFragment.this.getActionBar()
+//                .getThemedContext(), R.array.calendar_tasks_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
+//        spinner1.setAdapter(mSpinnerAdapter);
+        addListenerOnSpinnerItemSelection();
+        return true;
+    }
+
 
     public void addListenerOnSpinnerItemSelection() {
         spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {

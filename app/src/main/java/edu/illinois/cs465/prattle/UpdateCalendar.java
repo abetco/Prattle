@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class UpdateCalendar extends AppCompatActivity {
         private Spinner spinner1;
-        private Button btnSubmit;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
