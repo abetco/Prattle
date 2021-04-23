@@ -51,21 +51,21 @@
         <EditText
             android:id="@+id/editTextTextPersonName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="78dp"
             android:background="#FFFFFF"
             android:ems="10"
-            android:padding="10dp"
+            android:hint="Hangout Name"
             android:inputType="textPersonName"
-            android:saveEnabled="true"
-            android:hint="Hangout Name" />
+            android:padding="10dp"
+            android:saveEnabled="true" />
 
 
         <DatePicker
             android:id="@+id/date_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:datePickerMode="spinner"
             android:calendarViewShown="false"
-            android:spinnersShown="true"
             android:theme="@style/DatePickerStyle" />
 
         <TimePicker
