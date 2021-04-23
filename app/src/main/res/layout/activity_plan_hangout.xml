@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="381dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     tools:context=".PlanHangout">
@@ -10,6 +10,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/appbar"
         android:theme="@style/Theme.Prattle.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
@@ -23,12 +24,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include
-        layout="@layout/content_plan_hangout"
-        android:layout_width="381dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -37,13 +32,20 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        >
+
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="357dp"
-        android:layout_height="633dp"
-        android:layout_gravity="bottom|center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
         android:backgroundTint="@color/teal_200"
-        android:gravity="right|top"
+        android:paddingTop="50dp"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical">
 
         <EditText
@@ -52,43 +54,51 @@
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
             android:ems="10"
+            android:padding="10dp"
             android:inputType="textPersonName"
             android:saveEnabled="true"
             android:hint="Hangout Name" />
 
 
         <DatePicker
-            android:theme="@style/DatePickerStyle"
             android:id="@+id/date_picker"
             android:layout_width="match_parent"
-            android:layout_height="86dp"
-            android:layout_weight="4"
+            android:layout_height="wrap_content"
             android:calendarViewShown="true"
-            android:spinnersShown="false" />
+            android:spinnersShown="false"
+            android:theme="@style/DatePickerStyle" />
 
         <TimePicker
-            android:theme="@style/TimePickerStyle"
             android:id="@+id/time_picker"
-            android:layout_weight="4"
             android:layout_width="match_parent"
-            android:layout_height="0dp" />
-
-        <EditText
-            android:id="@+id/editTextNumber2"
-            android:layout_width="236dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Min. participants"
-            android:inputType="number"
-            android:saveEnabled="true" />
+            android:theme="@style/TimePickerStyle" />
 
-        <EditText
-            android:id="@+id/editTextNumber3"
-            android:layout_width="235dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Max. participants (optional)"
-            android:inputType="number" />
+            >
+            <EditText
+                android:id="@+id/editTextNumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="0.5"
+                android:paddingRight="5dp"
+                android:hint="Min. participants"
+                android:inputType="number"
+                android:saveEnabled="true" />
+
+            <EditText
+                android:id="@+id/editTextNumber3"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="0.5"
+                android:hint="Max. participants"
+                android:inputType="number" />
+
+        </LinearLayout>
 
         <EditText
             android:id="@+id/editTextTextMultiLine"
@@ -102,7 +112,7 @@
 
         <AutoCompleteTextView
             android:id="@+id/invitee1"
-            android:layout_width="357dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Invitee #1 (optional)" />
 
@@ -140,8 +150,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:saveEnabled="true"
-            android:text="Send invitations via SMS" />
+            android:text="Send invitations via SMS"
+            android:layout_marginBottom="40dp"/>
 
     </LinearLayout>
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
