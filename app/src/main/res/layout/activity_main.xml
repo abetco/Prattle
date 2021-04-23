@@ -16,6 +16,8 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
+            app:tabSelectedTextColor="@color/accent_color"
+            app:tabIndicatorColor="@color/accent_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -25,6 +27,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemTextColor="@color/secondary_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation_menu">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
