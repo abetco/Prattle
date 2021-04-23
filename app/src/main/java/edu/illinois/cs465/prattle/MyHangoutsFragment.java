@@ -32,16 +32,10 @@ public class MyHangoutsFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         dataModels = new ArrayList<>();
-        dataModels.add(new HangoutModel("Basketball", "5/31", "Chicago",
-                "Come play basketball with me!", new String[0], 0, 0));
-        dataModels.add(new HangoutModel("Soccer", "4/30", "Virtual",
-                "", new String[0], 0, 0));
-//        dataModels.add(new HangoutModel("Music", "3/31", "Virtual",
-//                "", new String[0], 0, 0));
-//        dataModels.add(new HangoutModel("Food", "5/18", "Urbana",
-//                "", new String[0], 0, 0));
-//        dataModels.add(new HangoutModel("Netflix", "5/23", "Champaign",
-//                "", new String[0], 0, 0));
+        dataModels.add(new HangoutModel("Dinner at McDonald's", "Friday, 4/23, 7:00 PM", "Urbana, IL",
+                "For anybody craving some McDonald's", new String[]{"Ethan", "Sally", "You"}, 2, 4));
+        dataModels.add(new HangoutModel("Swimming at the ARC", "Saturday 4/24, 4:00 PM", "Champaign, IL",
+                "Going swimming at the ARC", new String[]{"Albert", "You"}, 1, 6));
 
         Boolean clicked = ((MyApplication) getActivity().getApplication()).getClicked();
         if (clicked != null && clicked) {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,10 @@ public class MyHangoutsAdapter extends RecyclerView.Adapter<MyHangoutsAdapter.Vi
         private final TextView titleView;
         private final TextView dateView;
         private final TextView locationView;
+        private final TextView[] namesView;
+        private final ImageView[] profilesView;
+        private final TextView participantsView;
+        private final TextView minParticipantsView;
         private final RelativeLayout itemView;
 
         public ViewHolder(View view) {
@@ -33,6 +38,16 @@ public class MyHangoutsAdapter extends RecyclerView.Adapter<MyHangoutsAdapter.Vi
             titleView = view.findViewById(R.id.my_hangouts_title);
             dateView = view.findViewById(R.id.my_hangouts_date);
             locationView = view.findViewById(R.id.my_hangouts_location);
+            namesView = new TextView[]{view.findViewById(R.id.my_hangouts_name_1),
+                    view.findViewById(R.id.my_hangouts_name_2),
+                    view.findViewById(R.id.my_hangouts_name_3),
+                    view.findViewById(R.id.my_hangouts_name_4)};
+            profilesView = new ImageView[]{view.findViewById(R.id.my_hangouts_icon_1),
+                    view.findViewById(R.id.my_hangouts_icon_2),
+                    view.findViewById(R.id.my_hangouts_icon_3),
+                    view.findViewById(R.id.my_hangouts_icon_4)};
+            participantsView = view.findViewById(R.id.my_hangouts_participants);
+            minParticipantsView = view.findViewById(R.id.my_hangouts_min_participants);
             itemView = view.findViewById(R.id.my_hangouts_layout);
         }
 
@@ -48,7 +63,19 @@ public class MyHangoutsAdapter extends RecyclerView.Adapter<MyHangoutsAdapter.Vi
         public RelativeLayout getItemView() {
             return itemView;
         }
+        public TextView[] getNamesView() {
+            return namesView;
+        }
+        public TextView getParticipantsView() {
+            return participantsView;
+        }
+        public TextView getMinParticipantsView() {
+            return minParticipantsView;
+        }
 
+        public ImageView[] getProfilesView() {
+            return profilesView;
+        }
     }
 
     public MyHangoutsAdapter(ArrayList<HangoutModel> newData) {
@@ -68,6 +95,19 @@ public class MyHangoutsAdapter extends RecyclerView.Adapter<MyHangoutsAdapter.Vi
         holder.getTitleView().setText(dataSet.get(position).getTitle());
         holder.getDateView().setText(dataSet.get(position).getDate());
         holder.getLocationView().setText(dataSet.get(position).getLocation());
+        String names[] = dataSet.get(position).getParticipants();
+        TextView namesViews[] = holder.getNamesView();
+        ImageView profilesViews[] = holder.getProfilesView();
+        for (int i = 0; i < names.length; i++) {
+            namesViews[i].setText(names[i]);
+            profilesViews[i].setImageResource(R.drawable.ic_baseline_account_circle_24);
+        }
+        String participantsText = "Attendees: " +
+                String.valueOf(dataSet.get(position).getParticipants().length) + "/" +
+                String.valueOf(dataSet.get(position).getMaxParticipants());
+        holder.getParticipantsView().setText(participantsText);
+        String minParticipantsText = "minimum: " + String.valueOf(dataSet.get(position).getMinParticipants());
+        holder.getMinParticipantsView().setText(minParticipantsText);
         holder.getItemView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
