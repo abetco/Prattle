@@ -16,11 +16,12 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="match_parent"
             android:background="?attr/colorPrimary"
-            android:backgroundTint="#1D9E91"
+            android:backgroundTint="@color/primary_color"
             app:popupTheme="@style/Theme.Prattle.PopupOverlay"
-            app:titleTextColor="#000000" />
+            app:title="Prattle"
+            app:titleTextColor="#FFFFFF" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

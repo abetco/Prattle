@@ -35,8 +35,8 @@ public class PlanHangout extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_hangout);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
         ArrayList<String> CN = new ArrayList<String>();
         for (int i = 0; i < CONTACT_NAMES.length; i++) {
