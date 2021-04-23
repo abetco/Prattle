@@ -100,8 +100,8 @@ public class ViewCalendarFragment extends AppCompatActivity {
 
 //        SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(ViewCalendarFragment.this.getActionBar()
 //                .getThemedContext(), R.array.calendar_tasks_array, android.R.layout.simple_spinner_dropdown_item);
-        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
 //        spinner1.setAdapter(mSpinnerAdapter);
+        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
         addListenerOnSpinnerItemSelection();
         return true;
     }
