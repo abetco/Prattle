@@ -12,7 +12,8 @@
         android:theme="@style/Theme.Prattle">
         <activity android:name=".HangoutPage"></activity>
 
-        <activity android:name=".UpdateContacts" />
+        <activity android:name=".UpdateContacts"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".PlanHangout"
             android:label="@string/title_activity_plan_hangout"
@@ -27,6 +28,7 @@
             android:label="@string/title_activity_update_calendar"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
