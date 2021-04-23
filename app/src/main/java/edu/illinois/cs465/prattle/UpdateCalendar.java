@@ -91,15 +91,6 @@ public class UpdateCalendar extends AppCompatActivity {
                     public void onClick(View v) {
                         btn.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.btn_list));
                         btn.setSelected(!btn.isSelected());
-
-                        //int color = Color.LTGRAY;
-                        //Drawable background = btn.getBackground();
-                        //if (background instanceof ColorDrawable)
-                          //  color = ((ColorDrawable) background).getColor();
-                        //if (color == Color.LTGRAY)
-                           // btn.setBackgroundColor(Color.BLUE);
-                        //else if (color == Color.BLUE)
-                           // btn.setBackgroundColor(Color.LTGRAY);
                     }
                 });
 
