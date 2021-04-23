@@ -30,7 +30,7 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lin_layoutHor"
+        app:layout_constraintTop_toBottomOf="@id/lin_layoutHor2"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -189,7 +189,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/Time" />
+            android:text="Date" />
 
         <TextView
             android:id="@+id/textView1"
@@ -197,7 +197,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="15dp"
-            android:text="@string/Mon" />
+            android:text="@string/Mon"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -242,18 +242,86 @@
             android:text="@string/Sun" />
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin_layoutHor2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/lin_layoutHor"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Time" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:text="4/19"/>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="4/20" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="4/21" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="4/22" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="4/23" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="4/24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="4/25" />
+
+    </LinearLayout>
+
 
     <GridView
         tools:context="com.example.user.gridbuttonview.MainActivity"
         android:id="@+id/week_holder"
         android:layout_width="354dp"
-        android:layout_height="650dp"
+        android:layout_height="648dp"
         android:columnWidth="10dp"
         android:numColumns="7"
         android:rowCount="24"
         android:background="@drawable/grid_row_border"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lin_layoutHor"
+        app:layout_constraintTop_toBottomOf="@id/lin_layoutHor2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lin_layoutVer">
     </GridView>

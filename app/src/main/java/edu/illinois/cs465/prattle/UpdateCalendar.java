@@ -97,7 +97,7 @@ public class UpdateCalendar extends AppCompatActivity {
 
                 if (view == null) {
                     btn = new Button(mContext);
-                    btn.setTag("a" + (++btn_id));//Button tagging system all buttons currently are taged a0-a167
+                    btn.setTag("a" + (++btn_id));//Button tagging system all buttons currently are tagged a0-a167
                 } else {
                     btn = (Button) view;
                 }
