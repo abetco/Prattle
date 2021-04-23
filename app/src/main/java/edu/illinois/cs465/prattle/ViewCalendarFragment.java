@@ -79,7 +79,7 @@ public class ViewCalendarFragment extends AppCompatActivity {
                 Context context = getApplicationContext();
 //                    Toast.makeText(context, dateClicked.toString(), Toast.LENGTH_SHORT).show();
                 if (dateClicked.toString().compareTo("Fri Apr 23 00:00:00 CDT 2021") == 0 && isEvent) {
-                    Toast.makeText(context, "GOT", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Six Flags", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "No event", Toast.LENGTH_SHORT).show();
                 }

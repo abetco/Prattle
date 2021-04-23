@@ -30,137 +30,138 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/teal_200"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="false"
-        >
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/teal_200"
-        android:paddingTop="50dp"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="match_parent"
-            android:layout_height="78dp"
-            android:background="#FFFFFF"
-            android:ems="10"
-            android:hint="Hangout Name"
-            android:inputType="textPersonName"
-            android:padding="10dp"
-            android:saveEnabled="true" />
-
+        android:backgroundTint="@color/secondary_color"
+        android:focusable="false">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/teal_200"
+            android:orientation="vertical"
+            android:paddingTop="50dp">
 
-            <DatePicker
-                android:id="@+id/date_picker"
-                android:layout_width="match_parent"
-                android:layout_height="99dp"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"
-                android:theme="@style/DatePickerStyle" />
-
-            <TimePicker
-                android:id="@+id/time_picker"
-                android:layout_width="match_parent"
-                android:layout_height="104dp"
-                android:theme="@style/TimePickerStyle"
-                android:timePickerMode="spinner" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
             <EditText
-                android:id="@+id/editTextNumber2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:background="#FFFFFF"
                 android:ems="10"
-                android:layout_weight="0.5"
-                android:paddingRight="5dp"
-                android:hint="Min. participants"
-                android:inputType="number"
+                android:hint="Hangout Name"
+                android:inputType="textPersonName"
+                android:padding="10dp"
                 android:saveEnabled="true" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <DatePicker
+                    android:id="@+id/date_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="99dp"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"
+                    android:theme="@style/DatePickerStyle" />
+
+                <TimePicker
+                    android:id="@+id/time_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="104dp"
+                    android:theme="@style/TimePickerStyle"
+                    android:timePickerMode="spinner" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/editTextNumber2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:ems="10"
+                    android:hint="Min. participants"
+                    android:inputType="number"
+                    android:paddingRight="5dp"
+                    android:saveEnabled="true" />
+
+                <EditText
+                    android:id="@+id/editTextNumber3"
+                    android:layout_width="235dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:ems="10"
+                    android:hint="Max. participants"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
             <EditText
-                android:id="@+id/editTextNumber3"
-                android:layout_width="235dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="111dp"
                 android:ems="10"
-                android:layout_weight="0.5"
-                android:hint="Max. participants"
-                android:inputType="number" />
+                android:gravity="start|top"
+                android:hint="Description (optional)"
+                android:inputType="textMultiLine"
+                android:saveEnabled="true" />
+
+            <AutoCompleteTextView
+                android:id="@+id/invitee1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Invitee #1 (optional)" />
+
+            <AutoCompleteTextView
+                android:id="@+id/invitee2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Invitee #2 (optional)" />
+
+            <AutoCompleteTextView
+                android:id="@+id/invitee3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Invitee #3 (optional)" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:background="@color/black"
+                android:backgroundTint="@color/secondary_color"
+                android:text="Add More Invitees"
+                android:textColor="#000000" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:saveEnabled="true"
+                android:text="Send invitations via notifications" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:saveEnabled="true"
+                android:text="Send invitations via SMS" />
 
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/editTextTextMultiLine"
-            android:layout_width="match_parent"
-            android:layout_height="111dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:saveEnabled="true"
-            android:hint="Description (optional)" />
-
-        <AutoCompleteTextView
-            android:id="@+id/invitee1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Invitee #1 (optional)" />
-
-        <AutoCompleteTextView
-            android:id="@+id/invitee2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Invitee #2 (optional)" />
-
-        <AutoCompleteTextView
-            android:id="@+id/invitee3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Invitee #3 (optional)" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
-            android:background="@color/black"
-            android:backgroundTint="#704AE6D8"
-            android:text="Add More Invitees"
-            android:textColor="#000000" />
-
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:saveEnabled="true"
-            android:text="Send invitations via notifications" />
-
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:saveEnabled="true"
-            android:text="Send invitations via SMS"
-            android:layout_marginBottom="40dp"/>
-
-    </LinearLayout>
     </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
