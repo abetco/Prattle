@@ -22,7 +22,8 @@
             android:name=".UpdateCalendar"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_update_calendar"
-            android:theme="@style/Theme.Prattle.Fullscreen" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

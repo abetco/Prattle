@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -28,10 +29,11 @@ import android.content.Context;
 import android.app.Activity;
 import android.graphics.Color;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.gms.common.internal.FallbackServiceBroker;
 
-public class UpdateCalendar extends Activity {
+public class UpdateCalendar extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class UpdateCalendar extends Activity {
 
             GridView gridview = (GridView) findViewById(R.id.week_holder);
             gridview.setAdapter(new ButtonAdapter(this));
+            getSupportActionBar().setTitle("Set Free Time");
         }
 
         public class ButtonAdapter extends BaseAdapter {
@@ -79,14 +82,22 @@ public class UpdateCalendar extends Activity {
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int color = Color.LTGRAY;
-                        Drawable background = btn.getBackground();
-                        if (background instanceof ColorDrawable)
-                            color = ((ColorDrawable) background).getColor();
-                        if (color == Color.LTGRAY)
-                            btn.setBackgroundColor(Color.BLUE);
-                        else if (color == Color.BLUE)
-                            btn.setBackgroundColor(Color.LTGRAY);
+                        btn.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.btn_list));
+                        if (btn.isSelected() == false){
+                            btn.setSelected(true);
+                        }
+                        if (btn.isSelected()== true){
+                            btn.setSelected(false);
+                        }
+
+                        //int color = Color.LTGRAY;
+                        //Drawable background = btn.getBackground();
+                        //if (background instanceof ColorDrawable)
+                          //  color = ((ColorDrawable) background).getColor();
+                        //if (color == Color.LTGRAY)
+                          //  btn.setBackgroundColor(Color.BLUE);
+                        //else if (color == Color.BLUE)
+                          //  btn.setBackgroundColor(Color.LTGRAY);
                     }
                 });
 

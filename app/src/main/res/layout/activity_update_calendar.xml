@@ -8,12 +8,15 @@
     android:background="@color/white"
     tools:context=".UpdateCalendar">
 
+
+
     <LinearLayout
         android:id="@+id/lin_layoutVer"
-        android:layout_width="58dp"
-        android:layout_height="707dp"
+        android:layout_width="60dp"
+        android:layout_height="650dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lin_layoutHor"
         tools:ignore="MissingConstraints">
 
@@ -165,7 +168,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
@@ -231,7 +233,7 @@
         tools:context="com.example.user.gridbuttonview.MainActivity"
         android:id="@+id/week_holder"
         android:layout_width="354dp"
-        android:layout_height="712dp"
+        android:layout_height="650dp"
         android:columnWidth="10dp"
         android:numColumns="7"
         android:rowCount="24"
@@ -241,5 +243,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lin_layoutVer">
     </GridView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
