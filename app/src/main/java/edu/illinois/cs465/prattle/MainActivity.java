@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         // Bottom Navigation Creation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        bottomNavigationView.setItemIconTintList(null);
 
         // Hangouts tab creation
         TabLayout tabLayout = findViewById(R.id.tab_layout);

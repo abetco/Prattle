@@ -37,11 +37,6 @@ public class MyHangoutsFragment extends Fragment {
         dataModels.add(new HangoutModel("Swimming at the ARC", "Saturday 4/24, 4:00 PM", "Champaign, IL",
                 "Going swimming at the ARC", new String[]{"Albert", "You"}, 1, 6));
 
-        Boolean clicked = ((MyApplication) getActivity().getApplication()).getClicked();
-        if (clicked != null && clicked) {
-            dataModels.add(new HangoutModel("New thing", "2/30", "europe",
-                    "", new String[0], 0, 0));
-        }
 
         MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
         recyclerView.setAdapter(adapter);
