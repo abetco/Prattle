@@ -101,6 +101,27 @@ public class MyHangoutsAdapter extends RecyclerView.Adapter<MyHangoutsAdapter.Vi
         for (int i = 0; i < names.length; i++) {
             namesViews[i].setText(names[i]);
             profilesViews[i].setImageResource(R.drawable.ic_baseline_account_circle_24);
+            if (names[i] == "Sally") {
+                profilesViews[i].setImageResource(R.drawable.sally);
+            }
+            else if (names[i] == "Joe") {
+                profilesViews[i].setImageResource(R.drawable.joe);
+            }
+            else if (names[i] == "Albert") {
+                profilesViews[i].setImageResource(R.drawable.albert);
+            }
+            else if (names[i] == "Amy") {
+                profilesViews[i].setImageResource(R.drawable.amy);
+            }
+            else if (names[i] == "Billy") {
+                profilesViews[i].setImageResource(R.drawable.billy);
+            }
+            else if (names[i] == "Bob") {
+                profilesViews[i].setImageResource(R.drawable.bob);
+            }
+            else if (names[i] == "Ethan") {
+                profilesViews[i].setImageResource(R.drawable.ethan);
+            }
         }
         String participantsText = "Attendees: " +
                 String.valueOf(dataSet.get(position).getParticipants().length) + "/" +
