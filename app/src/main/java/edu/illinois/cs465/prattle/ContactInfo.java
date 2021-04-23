@@ -1,8 +1,11 @@
 package edu.illinois.cs465.prattle;
 
+import android.graphics.Bitmap;
+
 public class ContactInfo {
     private String name;
     private ContactStatus status;
+    private Bitmap photo;
 
     public String getName() {
         return name;
@@ -18,5 +21,13 @@ public class ContactInfo {
 
     public void setStatus(ContactStatus status) {
         this.status = status;
+    }
+
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
     }
 }
