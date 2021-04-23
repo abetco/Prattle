@@ -68,15 +68,29 @@ public class PlanHangout extends AppCompatActivity {
 //                String eventNameVal = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
 
                 // create intent and pass values using bundles
+
                 Snackbar.make(view, "Hangout successfully created!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Intent mIntent = new Intent(PlanHangout.this, ViewCalendarFragment.class);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
 
+                        /*finish();*/
+                        ((MyApplication) getApplication()).setClicked(true);
+
+                        Bundle mBundle = new Bundle();
+                        mBundle.putBoolean("isEvent", true);
+                        mIntent.putExtras(mBundle);
+                        startActivity(mIntent);
+                    }
+                }, 2000);
 //                String str = dateTextVal + " " + timeTextVal + "UTC";
 //                String str = "April 23 2021 23:11:52.454 UTC";
 //                SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz");
 //                Date date = df.parse(str);
 //                long epoch = date.getTime();
+                /*
                 long epoch = 1619213533000L;
                 Bundle mBundle = new Bundle();
 
@@ -84,7 +98,7 @@ public class PlanHangout extends AppCompatActivity {
 //                extras.putString("event_name", eventNameVal);
                 mBundle.putBoolean("isEvent", true);
                 mIntent.putExtras(mBundle);
-                startActivity(mIntent);
+                startActivity(mIntent);*/
             }
         });
     }
