@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.nav_calendar:
-                            Intent calIntent = new Intent(MainActivity.this, UpdateCalendar.class);
+                            Intent calIntent = new Intent(MainActivity.this, ViewCalendarFragment.class);
                             startActivity(calIntent);
                             break;
                         case R.id.nav_plan_hangout:

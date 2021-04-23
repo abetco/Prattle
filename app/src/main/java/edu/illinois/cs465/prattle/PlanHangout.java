@@ -1,5 +1,6 @@
 package edu.illinois.cs465.prattle;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -10,6 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Handler;
 import android.view.View;
+import android.widget.EditText;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
@@ -32,7 +37,7 @@ public class PlanHangout extends AppCompatActivity {
         setContentView(R.layout.activity_plan_hangout);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
         ArrayList<String> CN = new ArrayList<String>();
         for (int i = 0; i < CONTACT_NAMES.length; i++) {
             CN.add(CONTACT_NAMES[i]);
@@ -53,20 +58,34 @@ public class PlanHangout extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//                ((MyApplication) getApplication()).setClicked(true);
+
+                // Get values from editText fields in activity_plan
+//                String dateTextVal = ((EditText) findViewById(R.id.editTextDate)).getText().toString();
+//                String timeTextVal  = ((EditText) findViewById(R.id.editTextTime3)).getText().toString();
+//                String eventNameVal = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
+
+                // create intent and pass values using bundles
                 Snackbar.make(view, "Hangout successfully created!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
+                Intent mIntent = new Intent(PlanHangout.this, ViewCalendarFragment.class);
 
-                        finish();
-                        ((MyApplication) getApplication()).setClicked(true);
-                    }
-                }, 2000);
+//                String str = dateTextVal + " " + timeTextVal + "UTC";
+//                String str = "April 23 2021 23:11:52.454 UTC";
+//                SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz");
+//                Date date = df.parse(str);
+//                long epoch = date.getTime();
+                long epoch = 1619213533000L;
+                Bundle mBundle = new Bundle();
+
+//                extras.putLong("event_date", epoch);
+//                extras.putString("event_name", eventNameVal);
+                mBundle.putBoolean("isEvent", true);
+                mIntent.putExtras(mBundle);
+                startActivity(mIntent);
             }
         });
-
-
     }
 }
-

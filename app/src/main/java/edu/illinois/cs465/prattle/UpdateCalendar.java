@@ -1,39 +1,21 @@
 package edu.illinois.cs465.prattle;
 
-import android.annotation.SuppressLint;
-
-import androidx.appcompat.app.ActionBar;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.GridView;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.content.Context;
-import android.app.Activity;
-import android.graphics.Color;
-import android.widget.Button;
-import android.widget.ImageButton;
-
-import com.google.android.gms.common.internal.FallbackServiceBroker;
 
 public class UpdateCalendar extends AppCompatActivity {
+        private Spinner spinner1;
+        private Button btnSubmit;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -42,6 +24,31 @@ public class UpdateCalendar extends AppCompatActivity {
             GridView gridview = (GridView) findViewById(R.id.week_holder);
             gridview.setAdapter(new ButtonAdapter(this));
             getSupportActionBar().setTitle("Set Free Time");
+            spinner1 = (Spinner) findViewById(R.id.update_cal_spinner);
+            addListenerOnSpinnerItemSelection();
+
+
+        }
+
+        public void addListenerOnSpinnerItemSelection() {
+            spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    // your code here
+//                    Log.i("In Listener", "parentView.getItemAtPosition(position).toString()");
+                    if (parentView.getItemAtPosition(position).toString().equals("View Calendar")) {
+        //                    Log.i("View Calendar", "parentView.getItemAtPosition(position).toString()");
+                        Intent intent = new Intent(UpdateCalendar.this, ViewCalendarFragment.class);
+                        startActivity(intent);
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // your code here
+                }
+            });
         }
 
         public class ButtonAdapter extends BaseAdapter {
