@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Prattle</string>
+    <string name="app_name2">PRATTLE</string>
+    <string name="create_acc">Create Account</string>
     <string name="nav_label_1">Calendar</string>
     <string name="nav_label_2">Plan Hangout</string>
     <string name="nav_label_3">Contacts</string>
@@ -130,4 +132,5 @@
         <item>Update Calendar</item>
         <item>View Calendar</item>
     </string-array>
+    <string name="title_activity_create_account">Create_account</string>
 </resources>

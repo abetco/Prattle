@@ -13,6 +13,7 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="transparent_white">#F98F45</color>
+    <color name ="trans_white">#C1FFFFFF</color>
     <color name="grey">#E1E1E1</color>
     <color name="background">#16594A</color>
     <color name="primary_color">#12908E</color>
