@@ -42,6 +42,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 enum ContactTag {OFTEN, SOMETIMES, NEVER}
@@ -49,7 +50,8 @@ enum ContactTag {OFTEN, SOMETIMES, NEVER}
 public class UpdateContacts extends AppCompatActivity {
     public static final int PERMISSIONS_REQUEST_READ_CONTACTS = 1;
     ContactAdapter contactAdapter = null;
-    List<ContactInfo> contactInfoList;
+    List<ContactInfo> contactList;
+    HashMap<String, ContactTag> savedContactTags;
     ListView listView;
     ImageButton helpButton;
     Button doneButton;
@@ -59,12 +61,17 @@ public class UpdateContacts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_contacts);
         listView = findViewById(R.id.listContacts);
-        contactInfoList = new ArrayList<>();
-        getSavedContacts(UpdateContacts.this);
-        if (contactInfoList.isEmpty()) {
-            requestContactPermission();
+
+        contactList = new ArrayList<>();
+        readUserContacts();
+        savedContactTags = savedContactTagMap(getSavedContacts(UpdateContacts.this));
+        for (ContactInfo contact : contactList) {
+            if (savedContactTags.containsKey(contact.getName())) {
+                contact.setTag(savedContactTags.get(contact.getName()));
+            }
         }
-        contactAdapter = new ContactAdapter(UpdateContacts.this, R.layout.contact_info, contactInfoList);
+
+        contactAdapter = new ContactAdapter(UpdateContacts.this, R.layout.contact_info, contactList);
         listView.setAdapter(contactAdapter);
 
         helpButton = findViewById(R.id.help_button);
@@ -77,6 +84,7 @@ public class UpdateContacts extends AppCompatActivity {
         });
         doneButton = findViewById(R.id.doneEditingContacts);
         doneButton.setOnClickListener(view -> {
+            writeContacts();
             Intent mainIntent = new Intent(UpdateContacts.this, MainActivity.class);
             startActivity(mainIntent);
         });
@@ -85,10 +93,10 @@ public class UpdateContacts extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        writeContacts(UpdateContacts.this);
+        writeContacts();
     }
 
-    private Bitmap getBitmapFromDrawable(Drawable drawable) {
+    private static Bitmap getBitmapFromDrawable(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
         }
@@ -99,7 +107,7 @@ public class UpdateContacts extends AppCompatActivity {
         return bitmap;
     }
 
-    private String getStringFromBitmap(Bitmap bitmap) {
+    private static String getStringFromBitmap(Bitmap bitmap) {
         final int COMPRESSION_QUALITY = 100;
         ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,
@@ -108,7 +116,7 @@ public class UpdateContacts extends AppCompatActivity {
         return Base64.encodeToString(b, Base64.DEFAULT);
     }
 
-    private Bitmap getBitmapFromString(String string) {
+    private static Bitmap getBitmapFromString(String string) {
         byte[] decodedString = Base64.decode(string, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
@@ -139,33 +147,30 @@ public class UpdateContacts extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                contactInfoList.add(contactInfo);
+                contactList.add(contactInfo);
             }
         }
         cursor.close();
     }
 
-    public void requestContactPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        android.Manifest.permission.READ_CONTACTS)) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Contacts access needed.");
-                    builder.setPositiveButton(android.R.string.ok, null);
-                    builder.setMessage("Please enable access to contacts.");
-                    builder.setOnDismissListener(dialog -> requestPermissions(
-                            new String[]
-                                    {android.Manifest.permission.READ_CONTACTS}
-                            , PERMISSIONS_REQUEST_READ_CONTACTS));
-                    builder.show();
-                } else {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{android.Manifest.permission.READ_CONTACTS},
-                            PERMISSIONS_REQUEST_READ_CONTACTS);
-                }
+    public void readUserContacts() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.READ_CONTACTS)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Contacts access needed.");
+                builder.setPositiveButton(android.R.string.ok, null);
+                builder.setMessage("Please enable access to contacts.");
+                builder.setOnDismissListener(dialog -> requestPermissions(
+                        new String[]
+                                {android.Manifest.permission.READ_CONTACTS}
+                        , PERMISSIONS_REQUEST_READ_CONTACTS));
+                builder.show();
             } else {
-                getContacts();
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.READ_CONTACTS},
+                        PERMISSIONS_REQUEST_READ_CONTACTS);
             }
         } else {
             getContacts();
@@ -188,8 +193,9 @@ public class UpdateContacts extends AppCompatActivity {
         }
     }
 
-    public void getSavedContacts(Context context) {
-        JSONArray savedContactsList = null;
+    public static ArrayList<ContactInfo> getSavedContacts(Context context) {
+        JSONArray savedContactsJson = null;
+        ArrayList<ContactInfo> savedContacts = new ArrayList<>();
         try {
             File f = new File("/data/data/" + context.getPackageName() + "/contacts.json");
             FileInputStream is = new FileInputStream(f);
@@ -198,40 +204,49 @@ public class UpdateContacts extends AppCompatActivity {
             is.read(buffer);
             is.close();
             String mResponse = new String(buffer);
-            savedContactsList = new JSONArray(mResponse);
+            savedContactsJson = new JSONArray(mResponse);
         }
         catch (IOException | JSONException e){
             e.printStackTrace();
         }
-        if (savedContactsList != null) {
-            for (int i = 0; i < savedContactsList.length(); i++) {
+        if (savedContactsJson != null) {
+            for (int i = 0; i < savedContactsJson.length(); i++) {
                 try {
-                    JSONObject contact = savedContactsList.getJSONObject(i);
+                    JSONObject contact = savedContactsJson.getJSONObject(i);
                     ContactInfo newContact = new ContactInfo();
                     newContact.setName(contact.getString("name"));
                     newContact.setTag(ContactTag.valueOf(contact.getString("tag")));
                     newContact.setPhoto(getBitmapFromString(contact.getString("photo")));
-                    contactInfoList.add(newContact);
+                    savedContacts.add(newContact);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }
+        return savedContacts;
     }
 
-    public void writeContacts(Context context) {
+    private HashMap<String, ContactTag> savedContactTagMap(List<ContactInfo> savedContactList) {
+        HashMap<String, ContactTag> tagMap = new HashMap<>();
+        for (ContactInfo contact : savedContactList) {
+            tagMap.put(contact.getName(), contact.getTag());
+        }
+        return tagMap;
+    }
+
+    public void writeContacts() {
         try {
-            JSONArray savedContactsList = new JSONArray();
-            for (int i = 0; i < contactInfoList.size(); i++) {
+            JSONArray savedContactsJson = new JSONArray();
+            for (int i = 0; i < contactList.size(); i++) {
                 JSONObject contact = new JSONObject();
-                contact.put("name", contactInfoList.get(i).getName());
-                contact.put("tag", contactInfoList.get(i).getTag().toString());
-                contact.put("photo", getStringFromBitmap(contactInfoList.get(i).getPhoto()));
-                savedContactsList.put(contact);
+                contact.put("name", contactList.get(i).getName());
+                contact.put("tag", contactList.get(i).getTag().toString());
+                contact.put("photo", getStringFromBitmap(contactList.get(i).getPhoto()));
+                savedContactsJson.put(contact);
             }
             FileWriter file =
-                    new FileWriter("/data/data/" + context.getPackageName() + "/contacts.json");
-            file.write(savedContactsList.toString());
+                    new FileWriter("/data/data/" + UpdateContacts.this.getPackageName() + "/contacts.json");
+            file.write(savedContactsJson.toString());
             file.flush();
             file.close();
         }
