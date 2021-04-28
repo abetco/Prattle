@@ -1,10 +1,20 @@
 package edu.illinois.cs465.prattle;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import androidx.fragment.app.Fragment;
@@ -30,25 +40,77 @@ public class MyHangoutsFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_hangouts_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
-
-        dataModels = new ArrayList<>();
-        dataModels.add(new HangoutModel("Dinner at McDonald's", "Friday, 4/23, 7:00 PM", "Urbana, IL",
-                "For anybody craving some McDonald's", new String[]{"Ethan", "Sally", "You"}, 2, 4));
-        dataModels.add(new HangoutModel("Swimming at the ARC", "Saturday 4/24, 4:00 PM", "Champaign, IL",
-                "Going swimming at the ARC", new String[]{"Albert", "You"}, 1, 6));
-
-
+        dataModels = getMyHangouts(getContext());
         MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
         recyclerView.setAdapter(adapter);
         return v;
     }
 
-    public void updateContent() {
-        if (dataModels.get(dataModels.size() - 1).getTitle() == "Six Flags Hangout!") {
-            return;
+    public static ArrayList<HangoutModel> getMyHangouts(Context context) {
+        JSONArray myHangoutsList = null;
+        try {
+            File f = new File("/data/data/" + context.getPackageName() + "/myHangouts.json");
+            FileInputStream is = new FileInputStream(f);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String mResponse = new String(buffer);
+            myHangoutsList = new JSONArray(mResponse);
         }
-        dataModels.add(new HangoutModel("Six Flags Hangout!", "Sunday, 4/25, 12:00 PM", "Gurnee, IL",
-                "I want to have fun", new String[]{"You"}, 1, 8));
+        catch (IOException | JSONException e){
+            e.printStackTrace();
+        }
+        ArrayList<HangoutModel> newHangouts = new ArrayList<>();
+        if (myHangoutsList != null) {
+            for (int i = 0; i < myHangoutsList.length(); i++) {
+                try {
+                    JSONObject hangout = myHangoutsList.getJSONObject(i);
+                    JSONArray participantsJSON = hangout.getJSONArray("participants");
+                    String participants[] = new String[participantsJSON.length()];
+                    for (int j = 0; j < participantsJSON.length(); j++) {
+                        participants[j] = participantsJSON.get(j).toString();
+                    }
+                    newHangouts.add(new HangoutModel(hangout.getString("title"), hangout.getString("date"),
+                            hangout.getString("location"), hangout.getString("description"),
+                            participants, hangout.getInt("minParticipants"), hangout.getInt("maxParticipants")));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return newHangouts;
+    }
+
+    public static void writeMyHangouts(ArrayList<HangoutModel> data, Context context) {
+        try {
+            JSONArray myHangoutsList = new JSONArray();
+            for (int i = 0; i < data.size(); i++) {
+                JSONObject hangout = new JSONObject();
+                hangout.put("title", data.get(i).getTitle());
+                hangout.put("date", data.get(i).getDate());
+                hangout.put("location", data.get(i).getLocation());
+                hangout.put("description", data.get(i).getDescription());
+                hangout.put("participants", new JSONArray(data.get(i).getParticipants()));
+                hangout.put("minParticipants", data.get(i).getMinParticipants());
+                hangout.put("maxParticipants", data.get(i).getMaxParticipants());
+                myHangoutsList.put(hangout);
+            }
+            FileWriter file =
+                    new FileWriter("/data/data/" + context.getPackageName() + "/myHangouts.json");
+            file.write(myHangoutsList.toString());
+            file.flush();
+            file.close();
+        }
+        catch(IOException | JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dataModels = getMyHangouts(getContext());
         MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.my_hangouts_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());

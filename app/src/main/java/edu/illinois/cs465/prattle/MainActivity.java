@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
+import edu.illinois.cs465.prattle.data.HangoutModel;
 import edu.illinois.cs465.prattle.data.TabsAdapter;
 
 import android.content.Intent;
@@ -14,6 +15,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,12 +60,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        tabsAdapter.updateFragments();
+        // Write initial data to JSON file
+        ArrayList<HangoutModel> dataModels = new ArrayList<>();
+        dataModels.add(new HangoutModel("Dinner at McDonald's", "Friday, 4/23, 7:00 PM", "Urbana, IL",
+                "For anybody craving some McDonald's", new String[]{"Ethan", "Sally", "You"}, 2, 4));
+        dataModels.add(new HangoutModel("Swimming at the ARC", "Saturday 4/24, 4:00 PM", "Champaign, IL",
+                "Going swimming at the ARC", new String[]{"Albert", "You"}, 1, 6));
+        MyHangoutsFragment.writeMyHangouts(dataModels, getApplicationContext());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

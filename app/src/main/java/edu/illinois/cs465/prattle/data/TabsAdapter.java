@@ -56,12 +56,4 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
         return createdFragment;
     }
 
-    public void updateFragments() {
-//        if (browse != null) {
-//            break;
-//        }
-        if (my != null) {
-            my.updateContent();
-        }
-    }
 }

@@ -3,6 +3,7 @@ package edu.illinois.cs465.prattle.data;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,25 +102,25 @@ public class MyHangoutsAdapter extends RecyclerView.Adapter<MyHangoutsAdapter.Vi
         for (int i = 0; i < names.length; i++) {
             namesViews[i].setText(names[i]);
             profilesViews[i].setImageResource(R.drawable.ic_baseline_account_circle_24);
-            if (names[i] == "Sally") {
+            if (names[i].equals("Sally")) {
                 profilesViews[i].setImageResource(R.drawable.sally);
             }
-            else if (names[i] == "Joe") {
+            else if (names[i].equals("Joe")) {
                 profilesViews[i].setImageResource(R.drawable.joe);
             }
-            else if (names[i] == "Albert") {
+            else if (names[i].equals("Albert")) {
                 profilesViews[i].setImageResource(R.drawable.albert);
             }
-            else if (names[i] == "Amy") {
+            else if (names[i].equals("Amy")) {
                 profilesViews[i].setImageResource(R.drawable.amy);
             }
-            else if (names[i] == "Billy") {
+            else if (names[i].equals("Billy")) {
                 profilesViews[i].setImageResource(R.drawable.billy);
             }
-            else if (names[i] == "Bob") {
+            else if (names[i].equals("Bob")) {
                 profilesViews[i].setImageResource(R.drawable.bob);
             }
-            else if (names[i] == "Ethan") {
+            else if (names[i].equals("Ethan")) {
                 profilesViews[i].setImageResource(R.drawable.ethan);
             }
         }

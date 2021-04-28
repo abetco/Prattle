@@ -44,7 +44,7 @@
             android:value="@string/YOUR_API_KEY"></meta-data>
     </application>
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
