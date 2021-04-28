@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 public class ContactInfo {
     private String name;
-    private ContactStatus status;
+    private ContactTag tag;
     private Bitmap photo;
 
     public String getName() {
@@ -15,12 +15,12 @@ public class ContactInfo {
         this.name = name;
     }
 
-    public ContactStatus getStatus() {
-        return status;
+    public ContactTag getTag() {
+        return tag;
     }
 
-    public void setStatus(ContactStatus status) {
-        this.status = status;
+    public void setTag(ContactTag tag) {
+        this.tag = tag;
     }
 
     public Bitmap getPhoto() {

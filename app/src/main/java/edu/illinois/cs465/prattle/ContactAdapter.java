@@ -29,22 +29,22 @@ public class ContactAdapter extends ArrayAdapter {
 
     private class ViewHolder {
         TextView name;
-        Button status;
+        Button tag;
         ImageView photo;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void UpdateButton(ViewHolder holder, ContactStatus status) {
-        holder.status.setText(status.toString());
+    public void UpdateButton(ViewHolder holder, ContactTag tag) {
+        holder.tag.setText(tag.toString());
         int newColor;
-        if (status == ContactStatus.OFTEN) {
+        if (tag == ContactTag.OFTEN) {
             newColor = Color.argb(180, 20, 150, 20);
-        } else if (status == ContactStatus.SOMETIMES) {
+        } else if (tag == ContactTag.SOMETIMES) {
             newColor = Color.argb(200, 240, 150, 25);
         } else {
             newColor = Color.argb(180, 250, 30, 30);
         }
-        holder.status.setBackgroundTintList(ColorStateList.valueOf(newColor));
+        holder.tag.setBackgroundTintList(ColorStateList.valueOf(newColor));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -57,7 +57,7 @@ public class ContactAdapter extends ArrayAdapter {
 
             holder = new ViewHolder();
             holder.name = convertView.findViewById(R.id.contactName);
-            holder.status = convertView.findViewById(R.id.contactStatus);
+            holder.tag = convertView.findViewById(R.id.contactStatus);
             holder.photo = convertView.findViewById(R.id.contactPhoto);
             convertView.setTag(holder);
         } else {
@@ -67,19 +67,19 @@ public class ContactAdapter extends ArrayAdapter {
         ContactInfo contactInfo = (ContactInfo) contactInfoList.get(position);
         holder.name.setText(contactInfo.getName());
         holder.photo.setImageBitmap(contactInfo.getPhoto());
-        UpdateButton(holder, contactInfo.getStatus());
+        UpdateButton(holder, contactInfo.getTag());
 
         ViewHolder finalHolder = holder;
-        holder.status.setOnClickListener(view -> {
-            ContactStatus status = contactInfo.getStatus();
-            if (status == ContactStatus.OFTEN) {
-                contactInfo.setStatus(ContactStatus.NEVER);
-            } else if (status == ContactStatus.SOMETIMES) {
-                contactInfo.setStatus(ContactStatus.OFTEN);
+        holder.tag.setOnClickListener(view -> {
+            ContactTag tag = contactInfo.getTag();
+            if (tag == ContactTag.OFTEN) {
+                contactInfo.setTag(ContactTag.NEVER);
+            } else if (tag == ContactTag.SOMETIMES) {
+                contactInfo.setTag(ContactTag.OFTEN);
             } else {
-                contactInfo.setStatus(ContactStatus.SOMETIMES);
+                contactInfo.setTag(ContactTag.SOMETIMES);
             }
-            UpdateButton(finalHolder, contactInfo.getStatus());
+            UpdateButton(finalHolder, contactInfo.getTag());
         });
         return convertView;
     }

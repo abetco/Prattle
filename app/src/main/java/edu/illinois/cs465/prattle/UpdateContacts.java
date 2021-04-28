@@ -2,8 +2,10 @@ package edu.illinois.cs465.prattle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -16,35 +18,54 @@ import android.database.Cursor;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import edu.illinois.cs465.prattle.data.HangoutModel;
+import edu.illinois.cs465.prattle.data.MyHangoutsAdapter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-enum ContactStatus {OFTEN, SOMETIMES, NEVER}
+enum ContactTag {OFTEN, SOMETIMES, NEVER}
 
 public class UpdateContacts extends AppCompatActivity {
     public static final int PERMISSIONS_REQUEST_READ_CONTACTS = 1;
     ContactAdapter contactAdapter = null;
+    List<ContactInfo> contactInfoList;
     ListView listView;
     ImageButton helpButton;
     Button doneButton;
-    List<ContactInfo> contactInfoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_contacts);
         listView = findViewById(R.id.listContacts);
+        contactInfoList = new ArrayList<>();
+        getSavedContacts(UpdateContacts.this);
+        if (contactInfoList.isEmpty()) {
+            requestContactPermission();
+        }
+        contactAdapter = new ContactAdapter(UpdateContacts.this, R.layout.contact_info, contactInfoList);
         listView.setAdapter(contactAdapter);
-        requestContactPermission();
 
         helpButton = findViewById(R.id.help_button);
         helpButton.setOnClickListener(view -> {
@@ -61,6 +82,12 @@ public class UpdateContacts extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        writeContacts(UpdateContacts.this);
+    }
+
     private Bitmap getBitmapFromDrawable(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
@@ -72,13 +99,26 @@ public class UpdateContacts extends AppCompatActivity {
         return bitmap;
     }
 
-    private void getContacts(){
+    private String getStringFromBitmap(Bitmap bitmap) {
+        final int COMPRESSION_QUALITY = 100;
+        ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, COMPRESSION_QUALITY,
+                byteArrayBitmapStream);
+        byte[] b = byteArrayBitmapStream.toByteArray();
+        return Base64.encodeToString(b, Base64.DEFAULT);
+    }
+
+    private Bitmap getBitmapFromString(String string) {
+        byte[] decodedString = Base64.decode(string, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
+
+    private void getContacts() {
         String displayName;
         String imageUri;
         Bitmap photo;
         Drawable contactDrawable = getResources().getDrawable(R.drawable.ic_baseline_account_circle_gray_24);
         Bitmap defaultPhoto = getBitmapFromDrawable(contactDrawable);
-        contactInfoList = new ArrayList<>();
         Cursor cursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
@@ -87,7 +127,7 @@ public class UpdateContacts extends AppCompatActivity {
 
                 ContactInfo contactInfo = new ContactInfo();
                 contactInfo.setName(displayName);
-                contactInfo.setStatus(ContactStatus.NEVER);
+                contactInfo.setTag(ContactTag.NEVER);
                 contactInfo.setPhoto(defaultPhoto);
                 if (imageUri != null) {
                     try {
@@ -103,8 +143,6 @@ public class UpdateContacts extends AppCompatActivity {
             }
         }
         cursor.close();
-        contactAdapter = new ContactAdapter(UpdateContacts.this, R.layout.contact_info, contactInfoList);
-        listView.setAdapter(contactAdapter);
     }
 
     public void requestContactPermission() {
@@ -147,6 +185,58 @@ public class UpdateContacts extends AppCompatActivity {
                 }
                 return;
             }
+        }
+    }
+
+    public void getSavedContacts(Context context) {
+        JSONArray savedContactsList = null;
+        try {
+            File f = new File("/data/data/" + context.getPackageName() + "/contacts.json");
+            FileInputStream is = new FileInputStream(f);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String mResponse = new String(buffer);
+            savedContactsList = new JSONArray(mResponse);
+        }
+        catch (IOException | JSONException e){
+            e.printStackTrace();
+        }
+        if (savedContactsList != null) {
+            for (int i = 0; i < savedContactsList.length(); i++) {
+                try {
+                    JSONObject contact = savedContactsList.getJSONObject(i);
+                    ContactInfo newContact = new ContactInfo();
+                    newContact.setName(contact.getString("name"));
+                    newContact.setTag(ContactTag.valueOf(contact.getString("tag")));
+                    newContact.setPhoto(getBitmapFromString(contact.getString("photo")));
+                    contactInfoList.add(newContact);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void writeContacts(Context context) {
+        try {
+            JSONArray savedContactsList = new JSONArray();
+            for (int i = 0; i < contactInfoList.size(); i++) {
+                JSONObject contact = new JSONObject();
+                contact.put("name", contactInfoList.get(i).getName());
+                contact.put("tag", contactInfoList.get(i).getTag().toString());
+                contact.put("photo", getStringFromBitmap(contactInfoList.get(i).getPhoto()));
+                savedContactsList.put(contact);
+            }
+            FileWriter file =
+                    new FileWriter("/data/data/" + context.getPackageName() + "/contacts.json");
+            file.write(savedContactsList.toString());
+            file.flush();
+            file.close();
+        }
+        catch(IOException | JSONException e) {
+            e.printStackTrace();
         }
     }
 }
