@@ -9,20 +9,6 @@
     android:background="@color/white"
     tools:context=".UpdateCalendar">
 
-
-
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-
-<!--        <Spinner-->
-<!--            android:id="@+id/update_cal_spinner"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:entries="@array/calendar2_tasks_array"-->
-<!--            android:prompt="@string/hello_first_fragment" />-->
-<!--    </RelativeLayout>-->
-
     <LinearLayout
         android:id="@+id/lin_layoutVer"
         android:layout_width="60dp"
