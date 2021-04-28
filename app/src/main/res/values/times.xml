@@ -14,4 +14,8 @@
         <item>10:00</item>
         <item>11:00</item>
     </string-array>
+    <string-array name="am_pm">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
 </resources>
