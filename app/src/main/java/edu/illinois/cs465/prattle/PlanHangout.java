@@ -59,9 +59,6 @@ public class PlanHangout extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//                ((MyApplication) getApplication()).setClicked(true);
 
                 // Get values from editText fields in activity_plan
 //                String dateTextVal = ((EditText) findViewById(R.id.editTextDate)).getText().toString();
@@ -78,8 +75,12 @@ public class PlanHangout extends AppCompatActivity {
                     public void run() {
 
                         /*finish();*/
+                        String hangoutTitle = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
+                        int minParticipants = Integer.parseInt(((EditText) findViewById(R.id.editTextNumber2)).getText().toString());
+                        int maxParticipants = Integer.parseInt(((EditText) findViewById(R.id.editTextNumber3)).getText().toString());
+                        String description = ((EditText) findViewById(R.id.editTextTextMultiLine)).getText().toString();
                         ArrayList<HangoutModel> dataModels = MyHangoutsFragment.getMyHangouts(getApplicationContext());
-                        dataModels.add(new HangoutModel("Dinner at McDonald's", "Friday, 4/23, 7:00 PM", "Urbana, IL",
+                        dataModels.add(new HangoutModel(hangoutTitle, "Friday, 4/23, 7:00 PM", "Urbana, IL",
                                 "For anybody craving some McDonald's", new String[]{"Ethan", "Sally", "You"}, 2, 4));
                         MyHangoutsFragment.writeMyHangouts(dataModels, getApplicationContext());
 
@@ -92,17 +93,6 @@ public class PlanHangout extends AppCompatActivity {
 //                String str = dateTextVal + " " + timeTextVal + "UTC";
 //                String str = "April 23 2021 23:11:52.454 UTC";
 //                SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz");
-//                Date date = df.parse(str);
-//                long epoch = date.getTime();
-                /*
-                long epoch = 1619213533000L;
-                Bundle mBundle = new Bundle();
-
-//                extras.putLong("event_date", epoch);
-//                extras.putString("event_name", eventNameVal);
-                mBundle.putBoolean("isEvent", true);
-                mIntent.putExtras(mBundle);
-                startActivity(mIntent);*/
             }
         });
     }
