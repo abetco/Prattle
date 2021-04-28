@@ -75,8 +75,7 @@ public class Create_account extends AppCompatActivity implements AdapterView.OnI
                 String input_email = email.getText().toString();
                 if (validate(input_username,input_password,input_birthday,input_email)){
                     newUser = new User_data(input_username,input_password,input_birthday,input_email);
-                    //startActivity(new Intent(Create_account.this, MainActivity.class));
-
+                    startActivity(new Intent(Create_account.this, MainActivity.class));
                 }
 
             }

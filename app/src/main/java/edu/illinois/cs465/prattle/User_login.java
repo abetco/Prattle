@@ -44,13 +44,19 @@ public class User_login extends AppCompatActivity implements View.OnClickListene
                 String inputPassword = e_password.getText().toString();
                 if(inputName.isEmpty() || inputPassword.isEmpty()){
                     Toast.makeText(User_login.this, "Content Empty", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                if(inputName.equals(username_override) && inputPassword.equals(password_override)){
+                    Intent intent = new Intent(User_login.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else {
                     flag = validate(inputName,inputPassword);
                     if(!flag){
                         Toast.makeText(User_login.this, "Incorrect", Toast.LENGTH_SHORT).show();
                     } else{
                         //send to main activity
-                        Toast.makeText(User_login.this, "Correct", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(User_login.this, MainActivity.class);
+                        startActivity(intent);
                     }
                 }
                 break;
@@ -63,11 +69,11 @@ public class User_login extends AppCompatActivity implements View.OnClickListene
         }
     }
     private boolean validate (String username, String password){
-        if (Create_account.newUser != null){
-            if ((username.equals(username_override) && password.equals(password_override)) || (username.equals(Create_account.newUser.getName()) && password.equals(Create_account.newUser.getPassword()))) {
+
+        if (username.equals(Create_account.newUser.getName()) && password.equals(Create_account.newUser.getPassword())) {
                 return true;
-            }
         }
+
         return false;
     }
 }

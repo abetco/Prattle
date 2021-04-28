@@ -17,8 +17,15 @@
         <activity
             android:name=".Create_account"
             android:label="@string/title_activity_create_account"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".User_login" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".User_login"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+               <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".HangoutPage" />
         <activity
             android:name=".UpdateContacts"
@@ -37,13 +44,7 @@
             android:label="@string/title_activity_update_calendar"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"/>
 
         <meta-data
             android:name="com.google.android.gms.vision"
