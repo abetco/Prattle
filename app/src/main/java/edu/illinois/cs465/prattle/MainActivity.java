@@ -61,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Write initial data to JSON file
-        ArrayList<HangoutModel> dataModels = new ArrayList<>();
-        dataModels.add(new HangoutModel("Dinner at McDonald's", "Friday, 4/23, 7:00 PM", "Urbana, IL",
-                "For anybody craving some McDonald's", new String[]{"Ethan", "Sally", "You"}, 2, 4));
-        dataModels.add(new HangoutModel("Swimming at the ARC", "Saturday 4/24, 4:00 PM", "Champaign, IL",
-                "Going swimming at the ARC", new String[]{"Albert", "You"}, 1, 6));
-        MyHangoutsFragment.writeMyHangouts(dataModels, getApplicationContext());
+//         Write initial data to JSON file
+//        ArrayList<HangoutModel> dataModels = new ArrayList<>();
+//        dataModels.add(new HangoutModel("Dinner at McDonald's", "Friday, 4/23, 7:00 PM", "Urbana, IL",
+//                "For anybody craving some McDonald's", new String[]{"Ethan", "Sally", "You"}, 2, 4));
+//        dataModels.add(new HangoutModel("Swimming at the ARC", "Saturday 4/24, 4:00 PM", "Champaign, IL",
+//                "Going swimming at the ARC", new String[]{"Albert", "You"}, 1, 6));
+//        MyHangoutsFragment.writeMyHangouts(dataModels, getApplicationContext());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

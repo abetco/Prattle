@@ -137,6 +137,10 @@ public class BrowseHangoutsAdapter extends RecyclerView.Adapter<BrowseHangoutsAd
                 b.putString("date", dataSet.get(position).getDate());
                 b.putString("location", dataSet.get(position).getLocation());
                 b.putString("description", dataSet.get(position).getDescription());
+                b.putStringArray("participants", dataSet.get(position).getParticipants());
+                b.putInt("minParticipants", dataSet.get(position).getMinParticipants());
+                b.putInt("maxParticipants", dataSet.get(position).getMaxParticipants());
+                b.putBoolean("isMyHangouts", false);
                 intent.putExtras(b);
                 intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                 view.getContext().startActivity(intent);

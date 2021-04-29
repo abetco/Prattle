@@ -11,13 +11,17 @@ import androidx.appcompat.widget.Toolbar;
 import edu.illinois.cs465.prattle.data.HangoutModel;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.TimePicker;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,6 +33,10 @@ public class PlanHangout extends AppCompatActivity {
             "Alverta Korte", "Joannie Bondy", "Samuel Hand", "Alex Cumberland", "Clemmie Hartin", "Matt Weiss", "Alex Keely", "Yessenia Shirkey",
             "Archie Knappe", "Maudie Troche", "Diana Haskin", "Lonna Fujii"
 
+    };
+
+    private static final String[] DAYS_OF_WEEK = new String[] {
+            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     };
 
     @Override
@@ -78,10 +86,37 @@ public class PlanHangout extends AppCompatActivity {
                         String hangoutTitle = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
                         int minParticipants = Integer.parseInt(((EditText) findViewById(R.id.editTextNumber2)).getText().toString());
                         int maxParticipants = Integer.parseInt(((EditText) findViewById(R.id.editTextNumber3)).getText().toString());
-                        String description = ((EditText) findViewById(R.id.editTextTextMultiLine)).getText().toString();
+                        String location = ((EditText) findViewById(R.id.editTextTextMultiLine)).getText().toString();
+                        String description = ((EditText) findViewById(R.id.editTextTextMultiLine2)).getText().toString();
+                        TimePicker tp = (TimePicker) findViewById(R.id.time_picker);
+                        DatePicker dp = (DatePicker) findViewById(R.id.date_picker);
+                        int currHour = tp.getCurrentHour();
+                        int currMinute = tp.getCurrentMinute();
+                        String minute = String.valueOf(currMinute);
+                        if (currMinute < 10) {
+                            minute = "0" + minute;
+                        }
+                        String ampm = "AM";
+                        if (currHour > 12) {
+                            currHour = currHour - 12;
+                            ampm = "PM";
+                        }
+                        String dayName = "";
+                        SimpleDateFormat inFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        try {
+                            Date myDate = inFormat.parse(String.valueOf(dp.getDayOfMonth()) + "-" + String.valueOf(dp.getMonth()+1) + "-" + String.valueOf(dp.getYear()));
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE");
+                            dayName = simpleDateFormat.format(myDate);
+                        }
+                        catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        String datetime =  dayName + " " +
+                                String.valueOf(dp.getMonth()+1) + "/" + String.valueOf(dp.getDayOfMonth()) + ", "
+                                + String.valueOf(currHour) + ":" + minute + ampm;
                         ArrayList<HangoutModel> dataModels = MyHangoutsFragment.getMyHangouts(getApplicationContext());
-                        dataModels.add(new HangoutModel(hangoutTitle, "Friday, 4/23, 7:00 PM", "Urbana, IL",
-                                "For anybody craving some McDonald's", new String[]{"Ethan", "Sally", "You"}, 2, 4));
+                        dataModels.add(new HangoutModel(hangoutTitle, datetime, location,
+                                description, new String[]{"You"}, minParticipants, maxParticipants));
                         MyHangoutsFragment.writeMyHangouts(dataModels, getApplicationContext());
 
                         Bundle mBundle = new Bundle();
@@ -89,7 +124,7 @@ public class PlanHangout extends AppCompatActivity {
                         mIntent.putExtras(mBundle);
                         startActivity(mIntent);
                     }
-                }, 2000);
+                }, 1000);
 //                String str = dateTextVal + " " + timeTextVal + "UTC";
 //                String str = "April 23 2021 23:11:52.454 UTC";
 //                SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz");
