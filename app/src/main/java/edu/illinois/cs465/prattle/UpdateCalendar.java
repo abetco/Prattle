@@ -16,16 +16,29 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class UpdateCalendar extends AppCompatActivity {
         private Spinner spinner1;
+        String[] week_days;
+        RecyclerView recyclerView;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_update_calendar);
             getSupportActionBar().setTitle("Set Free Time");
+
+            week_days = getResources().getStringArray(R.array.weekdays);
+
+            recyclerView = findViewById(R.id.recycler_freetime);
+
+            FreetimeAdapter freetimeAdapter = new FreetimeAdapter(this,week_days);
+
+            recyclerView.setAdapter(freetimeAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
 
         @Override
