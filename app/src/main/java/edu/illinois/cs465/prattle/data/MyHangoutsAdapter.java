@@ -154,4 +154,9 @@ public class MyHangoutsAdapter extends RecyclerView.Adapter<MyHangoutsAdapter.Vi
     public int getItemCount() {
         return dataSet.size();
     }
+
+    // parent activity will implement this method to respond to click events
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
 }

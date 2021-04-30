@@ -4,6 +4,7 @@
         android:id="@+id/item1"
         android:title="@string/hello_first_fragment"
         android:visible="true"
+
         app:actionViewClass="android.widget.Spinner"
         app:showAsAction="always" />
 </menu>

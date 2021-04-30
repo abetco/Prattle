@@ -11,65 +11,90 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import edu.illinois.cs465.prattle.data.HangoutModel;
+import edu.illinois.cs465.prattle.data.MyHangoutsAdapter;
+
 public class ViewCalendarFragment extends AppCompatActivity {
     private Spinner spinner1;
-    private long dateTime;
-    private String eventName;
+    private ArrayList<HangoutModel> dataModels;
+    TextView result;
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
     CompactCalendarView compactCalendar;
-    private boolean isEvent;
+    ArrayList<Long> epochDates = new ArrayList<>();
+    ArrayList<String> eventDates = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_calendar);
-        Intent recIntent = getIntent();
-        getSupportActionBar().setTitle("View Calendar");
+//        getSupportActionBar().setTitle("View Calendar");
 
-        if(recIntent.hasExtra("isEvent")) {
-            Bundle extras = recIntent.getExtras();
-//            dateTime = extras.getLong("event_date", 0L);
-//            eventName = getIntent().getExtras().getString("event_name");
-            isEvent = getIntent().getExtras().getBoolean("isEvent");
-        } else {
-            eventName = "";
-            dateTime = 0L;
-            isEvent = false;
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(null);
+        // set up the RecyclerView
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_hangouts_list);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        dataModels = getMyHangouts(this);
+//        MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
+//        recyclerView.setAdapter(adapter);
+
+        dataModels = getMyHangouts(this);
+        MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
+
+//        long[] epochDates = new long[dataModels.size()];
+        for (int i = 0; i < dataModels.size(); i++) {
+            String time = dataModels.get(i).getDate();
+            String[] datetime = time.split(",");
+            String date = datetime[0];
+            eventDates.add(datetime[0]);
+            long epoch = 0L;
+            try {
+                epoch = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").parse(date + " 00:00:00").getTime();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            epochDates.add(epoch);
         }
 
-//        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
-//        addListenerOnSpinnerItemSelection();
-
-//        final ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(false);
-//        actionBar.setTitle(null);
+        result = (TextView) findViewById(R.id.tvResult);
 
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
 
-//        Context context = getApplicationContext();
-//        Toast.makeText(context, eventName, Toast.LENGTH_SHORT).show();
-
-        if(isEvent) {
+        // Add Events
+        for (int i = 0; i < epochDates.size(); i++) {
             int eveColor = getResources().getColor(R.color.transparent_white);
-            Event ev1 = new Event(eveColor, 1619213533000L, "GOT Movie");
-//            Context context = getApplicationContext();
-//            Toast.makeText(context, "In statement", Toast.LENGTH_SHORT).show();
+            Event ev1 = new Event(eveColor, epochDates.get(i), dataModels.get(i).getTitle());
             compactCalendar.addEvent(ev1, false);
         }
 
@@ -77,17 +102,34 @@ public class ViewCalendarFragment extends AppCompatActivity {
             @Override
             public void onDayClick(Date dateClicked) {
                 Context context = getApplicationContext();
-//                    Toast.makeText(context, dateClicked.toString(), Toast.LENGTH_SHORT).show();
-                if (dateClicked.toString().compareTo("Fri Apr 23 00:00:00 CDT 2021") == 0 && isEvent) {
-                    Toast.makeText(context, "Six Flags Hangout (12:00 PM) (1/8 attendees)", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "No hangouts planned/joined", Toast.LENGTH_SHORT).show();
+                String date = convertStringToDate(dateClicked);
+                Boolean isEvent = false;
+                for (int i = 0; i < eventDates.size(); i++) {
+//                    Toast.makeText(context, eventDates.get(i), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, date, Toast.LENGTH_SHORT).show();
+                    if (eventDates.get(i).equals(date)) {
+                        isEvent = true;
+                        String eveName = dataModels.get(i).getTitle();
+                        String datetime = dataModels.get(i).getDate();
+                        String[] eveDatetime = datetime.split(",");
+                        String eveDate = eveDatetime[0];
+                        String eveTime = eveDatetime[1];
+                        String eveDesc = dataModels.get(i).getDescription();
+                        String eveLocation = dataModels.get(i).getLocation();
+
+                        result.setText("Title:\t" + eveName + "\nDate:\t" + eveDate + "\nTime:\t" + eveTime +
+                                "\nDescription:\t" + eveDesc + "\nLocation:\t" + eveLocation);
+                    }
+                }
+
+                if(!isEvent) {
+                    result.setText("NO EVENT");
                 }
             }
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
-//                actionBar.setTitle(dateFormatMonth.format(firstDayOfNewMonth));
+                actionBar.setTitle(dateFormatMonth.format(firstDayOfNewMonth));
             }
         }));
     }
@@ -98,14 +140,11 @@ public class ViewCalendarFragment extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.item1);
         spinner1 = (Spinner) item.getActionView();
 
-        SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.calendar_tasks_array, android.R.layout.simple_spinner_dropdown_item);
+        SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.calendar_tasks_array, R.layout.spinner_item);
         spinner1.setAdapter(mSpinnerAdapter);
-//        spinner1 = (Spinner) findViewById(R.id.calendar_task_spinner);
-//        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, R.layout.spinner_item,items);
         addListenerOnSpinnerItemSelection();
         return true;
     }
-
 
     public void addListenerOnSpinnerItemSelection() {
         spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -116,9 +155,6 @@ public class ViewCalendarFragment extends AppCompatActivity {
 //                    Log.i("View Calendar", "parentView.getItemAtPosition(position).toString()");
                     Intent intent = new Intent(ViewCalendarFragment.this, UpdateCalendar.class);
                     startActivity(intent);
-//                    Toast.makeText(parentView.getContext(),
-//                            "OnItemSelectedListener : " + parentView.getItemAtPosition(position).toString(),
-//                            Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -127,5 +163,46 @@ public class ViewCalendarFragment extends AppCompatActivity {
                 // your code here
             }
         });
+    }
+
+    public static ArrayList<HangoutModel> getMyHangouts(Context context) {
+        JSONArray myHangoutsList = null;
+        try {
+            File f = new File("/data/data/" + context.getPackageName() + "/myHangouts.json");
+            FileInputStream is = new FileInputStream(f);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String mResponse = new String(buffer);
+            myHangoutsList = new JSONArray(mResponse);
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        ArrayList<HangoutModel> newHangouts = new ArrayList<>();
+        if (myHangoutsList != null) {
+            for (int i = 0; i < myHangoutsList.length(); i++) {
+                try {
+                    JSONObject hangout = myHangoutsList.getJSONObject(i);
+                    JSONArray participantsJSON = hangout.getJSONArray("participants");
+                    String participants[] = new String[participantsJSON.length()];
+                    for (int j = 0; j < participantsJSON.length(); j++) {
+                        participants[j] = participantsJSON.get(j).toString();
+                    }
+                    newHangouts.add(new HangoutModel(hangout.getString("title"), hangout.getString("date"),
+                            hangout.getString("location"), hangout.getString("description"),
+                            participants, hangout.getInt("minParticipants"), hangout.getInt("maxParticipants")));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return newHangouts;
+    }
+
+    public String convertStringToDate(Date date) {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        String strDate = dateFormat.format(date);
+        return strDate;
     }
 }

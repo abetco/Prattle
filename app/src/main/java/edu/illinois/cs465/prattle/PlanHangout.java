@@ -111,18 +111,35 @@ public class PlanHangout extends AppCompatActivity {
                         catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        String datetime =  dayName + " " +
-                                String.valueOf(dp.getMonth()+1) + "/" + String.valueOf(dp.getDayOfMonth()) + ", "
-                                + String.valueOf(currHour) + ":" + minute + ampm;
+//                        String datetime =  dayName + " " +
+//                                String.valueOf(dp.getMonth()+1) + "/" + String.valueOf(dp.getDayOfMonth()) + ", "
+//                                + String.valueOf(currHour) + ":" + minute + ampm;
+                        String month;
+                        String day;
+                        if (dp.getMonth() + 1 < 10) {
+                            month = "0" + String.valueOf(dp.getMonth()+1);
+                        } else {
+                            month = String.valueOf(dp.getMonth()+1);
+                        }
+
+                        if(dp.getDayOfMonth() < 10) {
+                            day = "0"+dp.getDayOfMonth();
+                        } else {
+                            day = String.valueOf(dp.getDayOfMonth());
+                        }
+
+                        String datetime = month+"/"+day+"/"+dp.getYear() +
+                            ", "  + currHour + ":" + minute + ampm;
+
                         ArrayList<HangoutModel> dataModels = MyHangoutsFragment.getMyHangouts(getApplicationContext());
                         dataModels.add(new HangoutModel(hangoutTitle, datetime, location,
                                 description, new String[]{"You"}, minParticipants, maxParticipants));
                         MyHangoutsFragment.writeMyHangouts(dataModels, getApplicationContext());
 
-                        Bundle mBundle = new Bundle();
-                        mBundle.putBoolean("isEvent", true);
-                        mIntent.putExtras(mBundle);
-                        startActivity(mIntent);
+//                        Bundle mBundle = new Bundle();
+//                        mBundle.putBoolean("isEvent", true);
+//                        mIntent.putExtras(mBundle);
+//                        startActivity(mIntent);
                     }
                 }, 1000);
 //                String str = dateTextVal + " " + timeTextVal + "UTC";
