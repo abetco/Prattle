@@ -46,7 +46,7 @@ public class UpdateCalendar extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.cal_toolbar, menu);
             MenuItem item = menu.findItem(R.id.item1);
             spinner1 = (Spinner) item.getActionView();
-            SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.calendar2_tasks_array, android.R.layout.simple_spinner_dropdown_item);
+            SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.calendar2_tasks_array, R.layout.spinner_item);
             spinner1.setAdapter(mSpinnerAdapter);
             addListenerOnSpinnerItemSelection();
             return true;

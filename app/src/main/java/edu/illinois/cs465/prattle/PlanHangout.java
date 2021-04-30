@@ -140,6 +140,8 @@ public class PlanHangout extends AppCompatActivity {
 //                        mBundle.putBoolean("isEvent", true);
 //                        mIntent.putExtras(mBundle);
 //                        startActivity(mIntent);
+                        Intent intent = new Intent(PlanHangout.this, ViewCalendarFragment.class);
+                        startActivity(intent);
                     }
                 }, 1000);
 //                String str = dateTextVal + " " + timeTextVal + "UTC";

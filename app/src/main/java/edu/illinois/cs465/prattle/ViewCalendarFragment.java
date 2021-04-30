@@ -60,12 +60,6 @@ public class ViewCalendarFragment extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(null);
-        // set up the RecyclerView
-//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_hangouts_list);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        dataModels = getMyHangouts(this);
-//        MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
-//        recyclerView.setAdapter(adapter);
 
         dataModels = getMyHangouts(this);
         MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
@@ -104,26 +98,37 @@ public class ViewCalendarFragment extends AppCompatActivity {
                 Context context = getApplicationContext();
                 String date = convertStringToDate(dateClicked);
                 Boolean isEvent = false;
+                ArrayList<HangoutModel> eventHangouts = new ArrayList<>();
                 for (int i = 0; i < eventDates.size(); i++) {
 //                    Toast.makeText(context, eventDates.get(i), Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(context, date, Toast.LENGTH_SHORT).show();
-                    if (eventDates.get(i).equals(date)) {
-                        isEvent = true;
-                        String eveName = dataModels.get(i).getTitle();
-                        String datetime = dataModels.get(i).getDate();
-                        String[] eveDatetime = datetime.split(",");
-                        String eveDate = eveDatetime[0];
-                        String eveTime = eveDatetime[1];
-                        String eveDesc = dataModels.get(i).getDescription();
-                        String eveLocation = dataModels.get(i).getLocation();
 
-                        result.setText("Title:\t" + eveName + "\nDate:\t" + eveDate + "\nTime:\t" + eveTime +
-                                "\nDescription:\t" + eveDesc + "\nLocation:\t" + eveLocation);
+                    if (eventDates.get(i).equals(date)) {
+                        result.setVisibility(View.INVISIBLE);
+                        isEvent = true;
+//                        String eveName = dataModels.get(i).getTitle();
+//                        String datetime = dataModels.get(i).getDate();
+//                        String[] eveDatetime = datetime.split(",");
+//                        String eveDate = eveDatetime[0];
+//                        String eveTime = eveDatetime[1];
+//                        String eveDesc = dataModels.get(i).getDescription();
+//                        String eveLocation = dataModels.get(i).getLocation();
+
+//                        result.setText("Title:\t" + eveName + "\nDate:\t" + eveDate + "\nTime:\t" + eveTime +
+//                                "\nDescription:\t" + eveDesc + "\nLocation:\t" + eveLocation);
+                        eventHangouts.add(dataModels.get(i));
+
                     }
+                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_viewCalendar);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//                    dataModels = getMyHangouts(getApplicationContext());
+                    MyHangoutsAdapter adapter = new MyHangoutsAdapter(eventHangouts);
+                    recyclerView.setAdapter(adapter);
                 }
 
                 if(!isEvent) {
-                    result.setText("No hangouts.");
+                    result.setVisibility(View.VISIBLE);
+                    result.setText("NO EVENT");
                 }
             }
 
@@ -151,7 +156,7 @@ public class ViewCalendarFragment extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
-                if (parentView.getItemAtPosition(position).toString().equals("Update Calendar")) {
+                if (parentView.getItemAtPosition(position).toString().equals("Update Availability")) {
 //                    Log.i("View Calendar", "parentView.getItemAtPosition(position).toString()");
                     Intent intent = new Intent(ViewCalendarFragment.this, UpdateCalendar.class);
                     startActivity(intent);
