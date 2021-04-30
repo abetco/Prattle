@@ -67,12 +67,14 @@ public class ViewCalendarFragment extends AppCompatActivity {
 //        long[] epochDates = new long[dataModels.size()];
         for (int i = 0; i < dataModels.size(); i++) {
             String time = dataModels.get(i).getDate();
-            String[] datetime = time.split(",");
-            String date = datetime[0];
-            eventDates.add(datetime[0]);
+            String[] datetime = time.split(", ");
+//            String[] date = datetime[0].split(",");
+//            String date = datetime[0];
+            String eveDate = datetime[1] + "/2021";
+            eventDates.add(eveDate);
             long epoch = 0L;
             try {
-                epoch = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").parse(date + " 00:00:00").getTime();
+                epoch = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").parse(eveDate + " 00:00:00").getTime();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -100,6 +102,7 @@ public class ViewCalendarFragment extends AppCompatActivity {
                 Boolean isEvent = false;
                 ArrayList<HangoutModel> eventHangouts = new ArrayList<>();
                 for (int i = 0; i < eventDates.size(); i++) {
+//                    Toast.makeText(context, eventDates.get(i), Toast.LENGTH_SHORT).show();
                     if (eventDates.get(i).equals(date)) {
                         result.setVisibility(View.INVISIBLE);
                         isEvent = true;

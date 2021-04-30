@@ -111,9 +111,7 @@ public class PlanHangout extends AppCompatActivity {
                         catch (ParseException e) {
                             e.printStackTrace();
                         }
-//                        String datetime =  dayName + " " +
-//                                String.valueOf(dp.getMonth()+1) + "/" + String.valueOf(dp.getDayOfMonth()) + ", "
-//                                + String.valueOf(currHour) + ":" + minute + ampm;
+//
                         String month;
                         String day;
                         if (dp.getMonth() + 1 < 10) {
@@ -128,8 +126,11 @@ public class PlanHangout extends AppCompatActivity {
                             day = String.valueOf(dp.getDayOfMonth());
                         }
 
-                        String datetime = month+"/"+day+"/"+dp.getYear() +
-                            ", "  + currHour + ":" + minute + ampm;
+//                        String datetime = month+"/"+day+"/"+dp.getYear() +
+//                            ", "  + currHour + ":" + minute + ampm;
+                        String datetime =  dayName + ", " +
+                                month + "/" + day + ", "
+                                + String.valueOf(currHour) + ":" + minute + ampm;
 
                         ArrayList<HangoutModel> dataModels = MyHangoutsFragment.getMyHangouts(getApplicationContext());
                         dataModels.add(new HangoutModel(hangoutTitle, datetime, location,
