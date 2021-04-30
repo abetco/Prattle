@@ -55,11 +55,11 @@ public class ViewCalendarFragment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_calendar);
-//        getSupportActionBar().setTitle("View Calendar");
+//        getSupportActionBar().setTitle("April- 2021");
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(null);
+        actionBar.setTitle("April- 2021");
 
         dataModels = getMyHangouts(this);
         MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
