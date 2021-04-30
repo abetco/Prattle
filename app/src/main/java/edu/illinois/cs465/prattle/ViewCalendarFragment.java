@@ -100,35 +100,21 @@ public class ViewCalendarFragment extends AppCompatActivity {
                 Boolean isEvent = false;
                 ArrayList<HangoutModel> eventHangouts = new ArrayList<>();
                 for (int i = 0; i < eventDates.size(); i++) {
-//                    Toast.makeText(context, eventDates.get(i), Toast.LENGTH_SHORT).show();
-//                    Toast.makeText(context, date, Toast.LENGTH_SHORT).show();
-
                     if (eventDates.get(i).equals(date)) {
                         result.setVisibility(View.INVISIBLE);
                         isEvent = true;
-//                        String eveName = dataModels.get(i).getTitle();
-//                        String datetime = dataModels.get(i).getDate();
-//                        String[] eveDatetime = datetime.split(",");
-//                        String eveDate = eveDatetime[0];
-//                        String eveTime = eveDatetime[1];
-//                        String eveDesc = dataModels.get(i).getDescription();
-//                        String eveLocation = dataModels.get(i).getLocation();
-
-//                        result.setText("Title:\t" + eveName + "\nDate:\t" + eveDate + "\nTime:\t" + eveTime +
-//                                "\nDescription:\t" + eveDesc + "\nLocation:\t" + eveLocation);
                         eventHangouts.add(dataModels.get(i));
 
                     }
                     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_viewCalendar);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//                    dataModels = getMyHangouts(getApplicationContext());
                     MyHangoutsAdapter adapter = new MyHangoutsAdapter(eventHangouts);
                     recyclerView.setAdapter(adapter);
                 }
 
                 if(!isEvent) {
                     result.setVisibility(View.VISIBLE);
-                    result.setText("NO EVENT");
+                    result.setText("NO HANGOUTS");
                 }
             }
 

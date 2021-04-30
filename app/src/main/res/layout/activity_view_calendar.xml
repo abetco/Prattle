@@ -24,48 +24,19 @@
         app:compactCalendarEventIndicatorStyle="fill_large_indicator"
         />
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:text="NO EVENTS"-->
-<!--        android:layout_marginLeft="15dp"-->
-<!--        android:layout_marginTop="15dp"></TextView>-->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:text="HANGOUT NAME:"-->
-<!--        android:layout_marginLeft="15dp"-->
-<!--        android:layout_marginTop="15dp"></TextView>-->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:text="Location:"-->
-<!--        android:layout_marginLeft="15dp"-->
-<!--        android:layout_marginTop="15dp"></TextView>-->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:text="Time:"-->
-<!--        android:layout_marginLeft="15dp"-->
-<!--        android:layout_marginTop="15dp"></TextView>-->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:text="Description:"-->
-<!--        android:layout_marginLeft="15dp"-->
-<!--        android:layout_marginTop="15dp"></TextView>-->
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_gravity="left"
+        android:layout_gravity="center"
         android:textSize="25dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_viewCalendar"
         android:layout_width="match_parent"
+        android:layout_gravity="top"
         android:layout_height="match_parent" />
 </LinearLayout>
