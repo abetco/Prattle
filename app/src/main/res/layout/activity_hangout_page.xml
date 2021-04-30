@@ -196,6 +196,7 @@
             android:layout_alignTop="@id/hangout_page_location"
             android:layout_marginTop="35dp"
             android:layout_alignParentRight="true"
+            android:drawableLeft="@drawable/ic_baseline_location_on_24"
             android:text="2/4"/>
 
         <TextView

@@ -32,6 +32,7 @@
         android:layout_alignTop="@id/my_hangouts_title"
         android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24"
         android:text="location"/>
 
     <LinearLayout
