@@ -31,11 +31,11 @@ public class BrowseHangoutsFragment extends Fragment {
 
         ArrayList<HangoutModel> dataModels;
         dataModels = new ArrayList<>();
-        dataModels.add(new HangoutModel("Basketball at ARC", "Monday, 5/31, 6:30 PM", "Champaign, IL",
+        dataModels.add(new HangoutModel("Basketball at ARC", "Monday, 05/31, 6:30 PM", "Champaign, IL",
                 "Come play basketball!", new String[]{"Amy", "Bob", "Joe"}, 2, 10));
-        dataModels.add(new HangoutModel("Movie night", "Friday, 4/30, 8:30 PM", "Virtual",
+        dataModels.add(new HangoutModel("Movie night", "Friday, 05/07, 8:30 PM", "Virtual",
                 "Watching movies! We'll vote on one before we start.", new String[]{"Billy", "Joe"}, 1, 10));
-        dataModels.add(new HangoutModel("Music Jam Session", "Tuesday, 4/27, 3:00 PM", "Virtual",
+        dataModels.add(new HangoutModel("Music Jam Session", "Tuesday, 05/18, 3:00 PM", "Virtual",
                 "Moosic", new String[]{"Amy"}, 2, 4));
         Switch matchSwitch = v.findViewById(R.id.hangouts_switch);
         matchSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
