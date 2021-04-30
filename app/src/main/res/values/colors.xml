@@ -19,4 +19,5 @@
     <color name="primary_color">#12908E</color>
     <color name="secondary_color">#704AE6D8</color>
     <color name="accent_color">#F98F45</color>
+    <color name="danger">#FFCCCB</color>
 </resources>

@@ -100,6 +100,7 @@ public class HangoutPage extends AppCompatActivity {
             Button commentButton = findViewById(R.id.submit_comment);
             if (isMyHangouts) {
                 bottomButton.setText("Leave Hangout");
+                bottomButton.setBackgroundColor(getResources().getColor(R.color.danger));
                 String finalTitle = title;
                 bottomButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -118,17 +119,18 @@ public class HangoutPage extends AppCompatActivity {
                     }
                 });
                 ListView listView = findViewById(R.id.comments_list);
-                String[] comments = new String[] {"Albert\nHello friends!", "Bob\nGoodbye friends!"};
+                String[] comments = new String[] {"Ethan\nHello friends!", "Sally\nGoodbye friends!"};
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(HangoutPage.this,
                         android.R.layout.simple_list_item_1, android.R.id.text1, comments);
                 listView.setAdapter(adapter);
                 commentButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         String comment = ((EditText) findViewById(R.id.comment_input)).getText().toString();
-                        String[] newComments = new String[] {"Albert\nHello friends!", "Bob\nGoodbye friends!", "You\n" + comment};
+                        String[] newComments = new String[] {"Ethan\nHello friends!", "Sally\nGoodbye friends!", "You\n" + comment};
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(HangoutPage.this,
                                 android.R.layout.simple_list_item_1, android.R.id.text1, newComments);
                         listView.setAdapter(adapter);
+                        ((EditText) findViewById(R.id.comment_input)).setText("");
                     }
                 });
             }
