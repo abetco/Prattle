@@ -123,7 +123,7 @@ public class ViewCalendarFragment extends AppCompatActivity {
                 }
 
                 if(!isEvent) {
-                    result.setText("NO EVENT");
+                    result.setText("No hangouts.");
                 }
             }
 
