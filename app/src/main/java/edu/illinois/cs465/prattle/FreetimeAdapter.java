@@ -4,7 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +33,6 @@ public class FreetimeAdapter extends RecyclerView.Adapter<FreetimeAdapter.dayHol
     @Override
     public void onBindViewHolder(@NonNull dayHolder holder, int position) {
         holder.mytext1.setText(week_days[position]);
-
     }
 
     @Override

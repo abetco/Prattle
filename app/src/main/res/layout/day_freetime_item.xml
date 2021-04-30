@@ -23,61 +23,53 @@
         tools:visibility="visible" />
 
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="72dp"
-        android:layout_height="38dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="329dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/trans_white"
-        app:srcCompat="@drawable/ic_plus_circle" />
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="25dp">
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="106dp"
+        android:text="@string/from" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/from" />
-        <Spinner
-            android:id="@+id/day_from_hour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp">
-        </Spinner>
-        <Spinner
-            android:id="@+id/day_from_amPm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp">
-        </Spinner>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="271dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/to" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/to"
-            android:layout_marginLeft="30dp"/>
-        <Spinner
-            android:id="@+id/day_to_hour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp">
-        </Spinner>
-        <Spinner
-            android:id="@+id/day_to_amPm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp">
-        </Spinner>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="35dp"
+        android:orientation="horizontal">
+
+        <TimePicker
+            android:layout_width="218dp"
+            android:layout_height="117dp"
+            android:padding="-60dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:layout_marginLeft="-20dp"
+            android:theme="@style/TimePickerStyle"
+            android:timePickerMode="spinner" />
+
+        <TimePicker
+            android:layout_width="241dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="-20dp"
+            android:padding="-60dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:theme="@style/TimePickerStyle"
+            android:timePickerMode="spinner" />
+
     </LinearLayout>
 
 

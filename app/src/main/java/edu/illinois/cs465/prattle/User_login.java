@@ -73,7 +73,6 @@ public class User_login extends AppCompatActivity implements View.OnClickListene
         if (username.equals(Create_account.newUser.getName()) && password.equals(Create_account.newUser.getPassword())) {
                 return true;
         }
-
         return false;
     }
 }

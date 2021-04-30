@@ -60,7 +60,6 @@ public class UpdateCalendar extends AppCompatActivity {
                         Intent intent = new Intent(UpdateCalendar.this, ViewCalendarFragment.class);
                         startActivity(intent);
                     }
-
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> parentView) {
