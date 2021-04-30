@@ -114,7 +114,7 @@ public class ViewCalendarFragment extends AppCompatActivity {
 
                 if(!isEvent) {
                     result.setVisibility(View.VISIBLE);
-                    result.setText("NO HANGOUTS");
+                    result.setText("No hangouts.");
                 }
             }
 
