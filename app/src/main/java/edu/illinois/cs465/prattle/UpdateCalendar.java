@@ -29,7 +29,6 @@ public class UpdateCalendar extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_update_calendar);
-            getSupportActionBar().setTitle("Set Free Time");
 
             week_days = getResources().getStringArray(R.array.weekdays);
 
