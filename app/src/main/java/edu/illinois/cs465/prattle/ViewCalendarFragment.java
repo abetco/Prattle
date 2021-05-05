@@ -59,7 +59,7 @@ public class ViewCalendarFragment extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("April- 2021");
+        actionBar.setTitle("May- 2021");
 
         dataModels = getMyHangouts(this);
         MyHangoutsAdapter adapter = new MyHangoutsAdapter(dataModels);
